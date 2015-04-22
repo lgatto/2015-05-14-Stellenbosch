@@ -2,64 +2,43 @@
 layout: workshop
 root: .
 venue: Stellenbosch University
-address: Genetics Department
+address: Den Bosch, 37 Victoria Street, Stellenbosch
 country: South-Africa 
 language: en
-latlng: -33.932808,18.864447
+latlng: -33.9624662,18.9012751
 humandate: May 14-15, 2015
 humantime: 9:00 am - 5:00 pm
 startdate: 2015-05-14
 enddate: 2015-05-15
 instructor: ["Laurent Gatto", "David Merand"]
-helper: ["Anelda van der Walt"]
+helper: ["Anelda van der Walt", "Raïssa Philibert", "Beatrix Coetzee", "Rachelle Bester"]
 contact: anelda.vdwalt@gmail.com
 etherpad: https://etherpad.mozilla.org/vPC5h63b7A
-## eventbrite: # FIXME (delete this if not used, otherwise uncomment and provide 1234567890AB key for Eventbrite registration)
 ---
-<!--
-  HEADER
 
-  Edit the values in the block above to be appropriate for your
-  workshop.  Run 'tools/check' *before* committing to make sure that
-  changes are good.
--->
-
-<!--
-  EVENTBRITE
-
-  This block includes the Eventbrite registration widget if
-  'eventbrite' has been set in the header.  You can delete it if you
-  are not using Eventbrite, or leave it in, since it will not be
-  displayed if the 'eventbrite' field in the header is not set.
--->
-{% if page.eventbrite %}
-<iframe
-  src="https://www.eventbrite.com/tickets-external?eid={{page.eventbrite}}&ref=etckt"
-  frameborder="0"
-  width="100%"
-  height="206px"
-  scrolling="auto">
-</iframe>
-{% endif %}
 
 <h2>General Information</h2>
 
-<!--
-  INTRODUCTION
-
-  Edit the general explanatory paragraph below if you want to change
-  the pitch.
--->
 <p>
-  <a href="{{site.swc_site}}">Software Carpentry</a>'s mission
-  is to help scientists and engineers get more research done in less
-  time and with less pain by teaching them basic lab skills for
-  scientific computing.  This hands-on workshop will cover basic
-  concepts and tools, including program design, version control, data
-  management, and task automation.  Participants will be encouraged to
-  help one another and to apply what they have learned to their own
-  research problems.
+We would like to invite postgraduate students and researchers to
+participate in a Software Carpentry workshop hosted by
+the <a href="http://www.sun.ac.za/english/faculty/agri/departments1/genetics">Department
+of Genetics at Stellenbosch University</a>
+and <a href="http://www.talarify.co.za/">Talarify</a>.
 </p>
+
+<p>
+  <a href="{{site.swc_site}}">Software Carpentry</a>'s mission is to
+  teach researchers basic computational skills to help them get more
+  research done in less time and with less pain. This introductory
+  level hands-on workshop will cover basic concepts and practices in
+  using R for data analysis, including basic data structures, writing
+  functions, running data analysis on multiple datasets and authoring
+  reproducible documents.Participants will be encouraged to help one
+  another and to apply what they have learned to their own research
+  problems.
+</p>
+
 <p align="center">
   <em>
     For more information on what we teach and why,
@@ -68,16 +47,14 @@ etherpad: https://etherpad.mozilla.org/vPC5h63b7A
   </em>
 </p>
 
-<!--
-  AUDIENCE
 
-  Explain who your audience is.  (In particular, tell readers if the
-  workshop is only open to people from a particular institution.
--->
 <p>
-  <strong>Who:</strong>
-  The course is aimed at graduate students and other researchers.
+  <strong>Who:</strong> The workshop is targeted at life sciences
+  postgraduate students and researchers, with limited or no prior
+  experience in R.  Participants have to be affiliated with
+  Stellenbosch University. There are only 30 places available
 </p>
+
 
 <!--
   LOCATION
@@ -95,8 +72,25 @@ etherpad: https://etherpad.mozilla.org/vPC5h63b7A
   <a href="//www.openstreetmap.org/?mlat={{page.latlng | replace:',','&mlon='}}&zoom=16">OpenStreetMap</a>
   or
   <a href="//maps.google.com/maps?q={{page.latlng}}">Google Maps</a>.
+
+  <br/>
+
+  Den Bosch, behind the offices of the Centre for Student Counselling
+  and Development in Victoria Street (37 Victoria Street),
+  Stellenbosch.
 </p>
 {% endif %}
+
+
+<p>
+  <strong>Cost:</strong> R500 registration fee.
+</p>
+
+<p>
+  <strong>Registration:</strong>
+  <a href="http://goo.gl/62KPRM">http://goo.gl/62KPRM</a>.
+</p>
+
 
 <!--
   SPECIAL REQUIREMENTS
@@ -140,32 +134,39 @@ etherpad: https://etherpad.mozilla.org/vPC5h63b7A
 -->
 <h2>Schedule</h2>
 
-To be added.
+To be updated.
 
-<!-- <div class="row"> -->
-<!--   <div class="col-md-6"> -->
-<!--     <h3>Day 1</h3> -->
-<!--     <table class="table table-striped"> -->
-<!--       <tr> <td>09:00</td>  <td>Automating tasks with the Unix shell</td> </tr> -->
-<!--       <tr> <td>10:30</td> <td>Coffee</td> </tr> -->
-<!--       <tr> <td>12:00</td>  <td>Lunch break</td> </tr> -->
-<!--       <tr> <td>13:00</td>  <td>Building programs with Python</td> </tr> -->
-<!--       <tr> <td>14:30</td>  <td>Coffee</td> </tr> -->
-<!--       <tr> <td>16:00</td>  <td>Wrap-up</td> </tr> -->
-<!--     </table> -->
-<!--   </div> -->
-<!--   <div class="col-md-6"> -->
-<!--     <h3>Day 2</h3> -->
-<!--     <table class="table table-striped"> -->
-<!--       <tr> <td>09:00</td>  <td>Version control with Git</td> </tr> -->
-<!--       <tr> <td>10:30</td>  <td>Coffee</td> </tr> -->
-<!--       <tr> <td>12:00</td>  <td>Lunch break</td> </tr> -->
-<!--       <tr> <td>13:00</td>  <td>Managing data with SQL</td> </tr> -->
-<!--       <tr> <td>14:30</td>  <td>Coffee</td> </tr> -->
-<!--       <tr> <td>16:00</td>  <td>Wrap-up</td> </tr> -->
-<!--     </table> -->
-<!--   </div> -->
-<!-- </div> -->
+<div class="row">
+  <div class="col-md-6">
+    <h3>Day 1</h3>
+    <table class="table table-striped">
+      <tr> <td> 09:00:00 </td> <td>Introduction </td> </tr>
+      <tr> <td> 09:30:00 </td> <td>Introduction to R Studio and etherpad  </td> </tr>
+      <tr> <td> 10:30:00 </td> <td>Coffee break </td> </tr>
+      <tr> <td> 11:00:00 </td> <td>R: Session 1 </td> </tr>
+      <tr> <td> 12:30:00 </td> <td>Lunch break </td> </tr>
+      <tr> <td> 13:30:00 </td> <td>R: Session 2 </td> </tr>
+      <tr> <td> 15:00:00 </td> <td>Coffee break </td> </tr>
+      <tr> <td> 15:30:00 </td> <td>R: Session 3 </td> </tr>
+      <tr> <td> 17:00:00 </td> <td>Close for day </td> </tr>
+      <tr> <td> 17:30:00 </td> <td>Social event  </td> </tr>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <h3>Day 2</h3>
+    <table class="table table-striped">
+      <tr> <td> 09:00:00 </td> <td>R: Session 4 </td> </tr>
+      <tr> <td> 10:30:00 </td> <td>Coffee break </td> </tr>
+      <tr> <td> 11:00:00 </td> <td>R: Session 5 </td> </tr>
+      <tr> <td> 12:30:00 </td> <td>Lunch break </td> </tr>
+      <tr> <td> 13:30:00 </td> <td>R: Session 6 </td> </tr>
+      <tr> <td> 15:00:00 </td> <td>Coffee break </td> </tr>
+      <tr> <td> 15:30:00 </td> <td>R: Session 7 </td> </tr>
+      <tr> <td> 16:30:00 </td> <td>Wrap up </td> </tr>
+      <tr> <td> 17:00:00 </td> <td>Workshop ends </td> </tr>      
+    </table>
+  </div>
+</div>
 
 <!--
   ETHERPAD
@@ -184,8 +185,8 @@ To be added.
 
 {% if page.etherpad %}
 <p>
-  We will use this Etherpad for chatting, taking notes, and sharing URLs and bits of code.
-  <br/>
+  We will use this Etherpad for chatting, taking notes, and sharing
+  URLs and bits of code:   <br/>
   <strong>Etherpad:</strong> <a href="{{page.etherpad}}">{{page.etherpad}}</a>.
 </p>
 {% endif %}
@@ -212,31 +213,6 @@ To be added.
 <h2>Syllabus</h2>
 
 <div class="row">
-  <!-- <div class="col-md-6"> -->
-  <!--   <h3>The Unix Shell</h3> -->
-  <!--   <ul> -->
-  <!--     <li>Files and directories</li> -->
-  <!--     <li>History and tab completion</li> -->
-  <!--     <li>Pipes and redirection</li> -->
-  <!--     <li>Looping over files</li> -->
-  <!--     <li>Creating and running shell scripts</li> -->
-  <!--     <li>Finding things</li> -->
-  <!--     <li><a href="{{site.swc_lessons}}/ref/01-shell.html">Reference...</a></li> -->
-  <!--   </ul> -->
-  <!-- </div> -->
-  <!-- <div class="col-md-6"> -->
-  <!--   <h3>Programming in Python</h3> -->
-  <!--   <ul> -->
-  <!--     <li>Using libraries</li> -->
-  <!--     <li>Working with arrays</li> -->
-  <!--     <li>Reading and plotting data</li> -->
-  <!--     <li>Creating and using functions</li> -->
-  <!--     <li>Loops and conditionals</li> -->
-  <!--     <li>Defensive programming</li> -->
-  <!--     <li>Using Python from the command line</li> -->
-  <!--     <li><a href="{{site.swc_lessons}}/ref/03-python.html">Reference...</a></li> -->
-  <!--   </ul> -->
-  <!-- </div> -->
   <div class="col-md-6">
     <h3>Programming in R</h3>
     <ul>
@@ -245,6 +221,7 @@ To be added.
       <li>Creating and using functions</li>
       <li>Loops and conditionals</li>
       <li>Using R from the command line</li>
+      <li>R authoring: Rmarkdown and knitr</li>
       <li><a href="{{site.swc_lessons}}/ref/06-R.html">Reference...</a></li>
     </ul>
   </div>
