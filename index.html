@@ -179,11 +179,14 @@ To be added.
   where 'YYYY-MM-DD-site' is the identifier for your workshop (e.g.,
   '2015-06-10-esu'.
 -->
+
+<br/>
+
 {% if page.etherpad %}
 <p>
-  <strong>Etherpad:</strong> <a href="{{page.etherpad}}">{{page.etherpad}}</a>.
-  <br/>
   We will use this Etherpad for chatting, taking notes, and sharing URLs and bits of code.
+  <br/>
+  <strong>Etherpad:</strong> <a href="{{page.etherpad}}">{{page.etherpad}}</a>.
 </p>
 {% endif %}
 
@@ -298,9 +301,9 @@ To be added.
   To participate in a Software Carpentry workshop, you will need 
   access to the software described below. In addition, you will 
   need an up-to-date web browser.
-  Once you are done installing the software listed below,
-  please go to <a href="setup/index.html">this page</a>,
-  which has instructions on how to test that everything was installed correctly.
+  <!-- Once you are done installing the software listed below, -->
+  <!-- please go to <a href="setup/index.html">this page</a>, -->
+  <!-- which has instructions on how to test that everything was installed correctly. -->
 </p>
 
 <!-- <div id="shell"> <\!-- Start of 'shell' section. -\-> -->
@@ -561,7 +564,7 @@ To be added.
     <div class="col-md-4">
       <h4 id="r-windows">Windows</h4>
       <p>
-        Install R by downloading and running
+        Install R version 3.2 by downloading and running
         <a href="http://cran.r-project.org/bin/windows/base/release.htm">this .exe file</a>
         from <a href="http://cran.r-project.org/index.html">CRAN</a>.
         Also, please install the
@@ -571,7 +574,7 @@ To be added.
     <div class="col-md-4">
       <h4 id="r-macosx">Mac OS X</h4>
       <p>
-        Install R by downloading and running
+        Install R version 3.2 by downloading and running
         <a href="http://cran.r-project.org/bin/macosx/R-latest.pkg">this .pkg file</a>
         from <a href="http://cran.r-project.org/index.html">CRAN</a>.
         Also, please install the
@@ -585,7 +588,8 @@ To be added.
         from <a href="http://cran.r-project.org/index.html">CRAN</a>. Or
         you can use your package manager (e.g. for Debian/Ubuntu
         run <code>sudo apt-get install r-base</code> and for Fedora run
-        <code>sudo yum install R</code>).  Also, please install the
+        <code>sudo yum install R</code>, but do check that you have
+        verison 3.2).  Also, please install the
         <a href="http://www.rstudio.com/ide/download/desktop">RStudio IDE</a>.
       </p>
     </div>
