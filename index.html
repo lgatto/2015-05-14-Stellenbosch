@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with R</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">Programming with R</h1>
+          
+<p>Course <a href="http://lgatto.github.io/2015-05-14-Stellenbosch/">web page</a></p>
+<p>The best way to learn how to program is to do something useful, so this introduction to R is built around a common scientific task: data analysis.</p>
+<p>Our real goal isn’t to teach you R, but to teach you the basic concepts that all programming depends on. We use R in our lessons because:</p>
+<ol style="list-style-type: decimal">
+<li>we have to use <em>something</em> for examples;</li>
+<li>it’s free, well-documented, and runs almost everywhere;</li>
+<li>it has a large (and growing) user base among scientists; and</li>
+<li>it has a large collection of external packages available for performing diverse tasks.</li>
+</ol>
+<p>But the two most important things are to use whatever language your colleagues are using, so that you can share you work with them easily, and to use that language <em>well</em>.</p>
+<blockquote>
+<h2>Important</h2>
+<p>Before we start, make sure you have the <a href="https://github.com/lgatto/2015-05-14-Stellenbosch/archive/master.zip">course material</a> and all the software is installed. If unsure, please ask us!</p>
+</blockquote>
+<h2 id="day-1-thursday-14-may">Day 1 (Thursday 14 May)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Time</th>
+<th align="left">Content</th>
+<th align="left">Who</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">8:30</td>
+<td align="left">Coffee &amp; Assistance with setting up laptops</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">9:00</td>
+<td align="left">Introduction</td>
+<td align="left">everyone</td>
+</tr>
+<tr class="odd">
+<td align="left">9:30</td>
+<td align="left">Etherpad, RStudio, Getting help</td>
+<td align="left">Anelda</td>
+</tr>
+<tr class="even">
+<td align="left">10:30</td>
+<td align="left">Tea break</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">11:00</td>
+<td align="left">Data types &amp; Data structures</td>
+<td align="left">David</td>
+</tr>
+<tr class="even">
+<td align="left">12:30</td>
+<td align="left">Lunch</td>
+</tr>
+<tr class="odd">
+<td align="left">13:30</td>
+<td align="left">Analyzing patient data</td>
+<td align="left">Anelda/David</td>
+</tr>
+<tr class="even">
+<td align="left">15:00</td>
+<td align="left">Tea break</td>
+</tr>
+<tr class="odd">
+<td align="left">15:30</td>
+<td align="left">Creating Functions</td>
+<td align="left">Laurent</td>
+</tr>
+<tr class="even">
+<td align="left">16:30</td>
+<td align="left">Github Demonstration</td>
+<td align="left">Laurent/David</td>
+</tr>
+<tr class="odd">
+<td align="left">17:00</td>
+<td align="left">Wrap-up and close</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Our work environment: <a href="https://etherpad.mozilla.org/vPC5h63b7A">etherpad</a> and <a href="motivation.html">R</a>, <a href="01-supp-intro-rstudio.html">RStudio</a>.</li>
+<li>The R ecosystem: <a href="01-supp-intro-packages.html">packages</a>.</li>
+<li>Getting started with R: <a href="01-starting-with-data.html">Analyzing Patient Data</a></li>
+<li><a href="01-supp-data-structures.html">Data types and data structures</a></li>
+<li><a href="02-func-R.html">Creating Functions</a></li>
+<li>Demonstration: source code versioning with <a href="http://www.git-scm.com/"><code>git</code></a> and <a href="https://github.com/">GitHub</a></li>
+</ul>
+<h2 id="day-2-friday-15-may">Day 2 (Friday 15 May)</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Time</th>
+<th align="left">Content</th>
+<th align="left">Who</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">8:30</td>
+<td align="left">Coffee</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">9:00</td>
+<td align="left">Analysing multiple data sets</td>
+<td align="left">Anelda/David</td>
+</tr>
+<tr class="odd">
+<td align="left">10:30</td>
+<td align="left">Tea time</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">11:00</td>
+<td align="left">Making choices</td>
+<td align="left">Anelda/David</td>
+</tr>
+<tr class="odd">
+<td align="left">12:30</td>
+<td align="left">Lunch</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">13:30</td>
+<td align="left">Visualisation</td>
+<td align="left">Laurent</td>
+</tr>
+<tr class="odd">
+<td align="left">15:00</td>
+<td align="left">Tea time</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">15:30</td>
+<td align="left">Reproducible research (Markdown &amp; knitr)</td>
+<td align="left">Laurent</td>
+</tr>
+<tr class="odd">
+<td align="left">17:00</td>
+<td align="left">Wrap-up and close</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="03-loops-R.html">Analyzing Multiple Data Sets</a></li>
+<li><a href="04-cond.html">Making Choices</a></li>
+<li>Visualisation</li>
+<li><a href="07-knitr-R.html">Writing reproducible documents</a></li>
+</ul>
+<h2 id="other-resources">Other Resources</h2>
+<ul>
+<li><a href="reference.html">Reference</a></li>
+</ul>
+<h2 id="supplemental-lessons">Supplemental lessons</h2>
+<ul>
+<li><a href="01-supp-addressing-data.html">Addressing data</a></li>
+<li><a href="01-supp-factors.html">Working with factors</a></li>
+<li><a href="01-supp-read-write-csv.html">Reading and writing spreadsheets</a></li>
+<li><a href="06-cmdline.html">Command-Line Programs</a></li>
+</ul>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="index.html">Home</a>
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/lgatto/2015-05-14-Stellenbosch">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/r-novice-inflammation">Origin</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

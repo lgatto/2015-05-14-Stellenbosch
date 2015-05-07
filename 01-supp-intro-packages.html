@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with R</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">Programming with R</h1>
+          <h2 class="subtitle">Packages</h2>
+<blockquote>
+<h2>Objectives</h2>
+<ul>
+<li>What is a package</li>
+<li>Install packages from a repository</li>
+<li>Load a package</li>
+<li>Update packages</li>
+</ul>
+</blockquote>
+<h3 id="r-packages">R packages</h3>
+<p>While R has many features to perform statistical tests, elaborate plotting, … out of the box, one reason for its success is the <em>easiness</em> with which it can be expanded by writing <strong>packages</strong> that extend its functionality.</p>
+<p>These packages are writting by thousands of developers and distributed through on-line repositories. The main repository is the <a href="http://cran.r-project.org/">Comprehensive R Archive Network</a>, which has many mirrors across the world. Others include the <a href="http://bioconductor.org/">Bioconductor</a>, dedicated for the analysis and comprehension of high-throughput genomic data or general purpose repositories such as <a href="https://github.com/">GitHub</a>.</p>
+<h3 id="installing-packages">Installing packages</h3>
+<p>To install packages from CRAN, one only needs to know the package name as, for example, <code>ggplot2</code> below.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
+<p>The package is then installed in a specific directory on your hard drive, called a library.</p>
+<blockquote>
+<h2>Tip</h2>
+<p>Note that the first time you install a package, you might get asked if you want to create your own personal library in your home directory, which is recommended.</p>
+</blockquote>
+<h3 id="loading-a-package">Loading a package</h3>
+<p>To make use of the functionality of a package, you will need to load it explicitly every time you start R as shown below:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</code></pre>
+<h3 id="installing-more-packages">Installing more packages</h3>
+<p>To install a package from Bioconductor, you will need a special function called <code>biocView</code> (which uses <code>install.packages</code>). The very first time we want to install a Bioconductor package, we do the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://www.bioconductor.org&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;DESeq2&quot;</span>)</code></pre>
+<p>After this, we use a dedicated package (which is automatically installed by <code>source(&quot;http://www.bioconductor.org&quot;)</code>) called <code>BiocInstaller</code>, that provides the <code>biocLite</code> function.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;BiocInstaller&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;DESeq2&quot;</span>)</code></pre>
+<p>To install a package directly from <code>GitHub</code>, we need to use the <code>install_github</code> function from the <code>devtools</code> package.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;devtools&quot;</span>)
+<span class="kw">install_github</span>(<span class="st">&quot;hadley/stringr&quot;</span>)</code></pre>
+<blockquote>
+<h2>Note</h2>
+<p>Packages on CRAN and Bioconductor are reviewed and automatically tested before being distributed. Packages on GitHub are not reviewed but sometimes get tested automatically.</p>
+</blockquote>
+<h3 id="updating-packages">Updating packages</h3>
+<p>Use the <code>update.packages()</code> function.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="index.html">Home</a>
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/lgatto/2015-05-14-Stellenbosch">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/r-novice-inflammation">Origin</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
