@@ -1,17 +1,9 @@
-<<<<<<< HEAD
+ HEAD
 *~
 *.pyc
 .DS_Store
 _site
-=======
-README.html
-LAYOUT.html
-FAQ.html
-DESIGN.html
-CONTRIBUTING.html
-CONDUCT.html
-*~
 *.pyc
 _site
 .DS_Store
->>>>>>> da2913ba7930deb936dd0717446af1a17bb50338
+
