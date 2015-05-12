@@ -90,7 +90,20 @@
 <ul>
 <li>In the last lesson, we learned to <strong>c</strong>oncatenate elements into a vector using the <code>c</code> function, e.g. <code>x &lt;- c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;)</code> creates a vector <code>x</code> with three elements. Furthermore, we can extend that vector again using <code>c</code>, e.g. <code>y &lt;- c(x, &quot;D&quot;)</code> creates a vector <code>y</code> with four elements. Write a function called <code>fence</code> that takes two vectors as arguments, called <code>original</code> and <code>wrapper</code>, and returns a new vector that has the wrapper vector at the beginning and end of the original:</li>
 </ul>
-<p><code>{r, echo=-1} fence &lt;- function(original, wrapper) {    answer &lt;- c(wrapper, original, wrapper)    return(answer) } best_practice &lt;- c(&quot;Write&quot;, &quot;programs&quot;, &quot;for&quot;, &quot;people&quot;, &quot;not&quot;, &quot;computers&quot;) asterisk &lt;- &quot;***&quot;  # R interprets a variable with a single value as a vector                    # with one element. fence(best_practice, asterisk)</code> + If the variable <code>v</code> refers to a vector, then <code>v[1]</code> is the vector’s first element and <code>v[length(v)]</code> is its last (the function <code>length</code> returns the number of elements in a vector). Write a function called <code>outside</code> that returns a vector made up of just the first and last elements of its input: <code>{r, echo=-1} outside &lt;- function(v) {   first &lt;- v[1]    last &lt;- v[length(v)]    answer &lt;- c(first, last)    return(answer) } dry_principle &lt;- c(&quot;Don't&quot;, &quot;repeat&quot;, &quot;yourself&quot;, &quot;or&quot;, &quot;others&quot;) outside(dry_principle)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">best_practice &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Write&quot;</span>, <span class="st">&quot;programs&quot;</span>, <span class="st">&quot;for&quot;</span>, <span class="st">&quot;people&quot;</span>, <span class="st">&quot;not&quot;</span>, <span class="st">&quot;computers&quot;</span>)
+asterisk &lt;-<span class="st"> &quot;***&quot;</span>  <span class="co"># R interprets a variable with a single value as a vector</span>
+                   <span class="co"># with one element.</span>
+<span class="kw">fence</span>(best_practice, asterisk)</code></pre>
+<pre class="output"><code>[1] &quot;***&quot;       &quot;Write&quot;     &quot;programs&quot;  &quot;for&quot;       &quot;people&quot;    &quot;not&quot;      
+[7] &quot;computers&quot; &quot;***&quot;      
+</code></pre>
+<ul>
+<li>If the variable <code>v</code> refers to a vector, then <code>v[1]</code> is the vector’s first element and <code>v[length(v)]</code> is its last (the function <code>length</code> returns the number of elements in a vector). Write a function called <code>outside</code> that returns a vector made up of just the first and last elements of its input:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">dry_principle &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Don&#39;t&quot;</span>, <span class="st">&quot;repeat&quot;</span>, <span class="st">&quot;yourself&quot;</span>, <span class="st">&quot;or&quot;</span>, <span class="st">&quot;others&quot;</span>)
+<span class="kw">outside</span>(dry_principle)</code></pre>
+<pre class="output"><code>[1] &quot;Don&#39;t&quot;  &quot;others&quot;
+</code></pre>
 </blockquote>
 <h3 id="the-call-stack">The Call Stack</h3>
 <p>Let’s take a closer look at what happens when we call <code>fahr_to_celsius(32)</code>. To make things clearer, we’ll start by putting the initial value 32 in a variable and store the final result in one as well:</p>
@@ -141,8 +154,11 @@ dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="
 <blockquote>
 <h2>Challenge - Following the call stack</h2>
 <ul>
-<li>We previously wrote functions called <code>fence</code> and <code>outside</code>. Draw a diagram showing how the call stack changes when we run the following: <code>{r, results=&quot;hide&quot;} inner_vec &lt;- &quot;carbon&quot; outer_vec &lt;- &quot;+&quot; result &lt;- outside(fence(inner_vec, outer_vec))</code></li>
+<li>We previously wrote functions called <code>fence</code> and <code>outside</code>. Draw a diagram showing how the call stack changes when we run the following:</li>
 </ul>
+<pre class="sourceCode r"><code class="sourceCode r">inner_vec &lt;-<span class="st"> &quot;carbon&quot;</span>
+outer_vec &lt;-<span class="st"> &quot;+&quot;</span>
+result &lt;-<span class="st"> </span><span class="kw">outside</span>(<span class="kw">fence</span>(inner_vec, outer_vec))</code></pre>
 </blockquote>
 <h3 id="testing-and-documenting">Testing and Documenting</h3>
 <p>Once we start putting things in functions so that we can re-use them, we need to start testing that those functions are working correctly. To see how to do this, let’s write a function to center a dataset around a particular value:</p>

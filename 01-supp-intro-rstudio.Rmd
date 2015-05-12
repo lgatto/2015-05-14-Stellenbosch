@@ -22,9 +22,7 @@ Let's start by learning about our tool.
 * Code and workflow are more reproducible if we can document everything that we do.
 * Our end goal is not just to "do stuff" but to do it in a way that anyone can
   easily and exactly replicate our workflow and results.
-* The best way to achieve this is to write scripts. RStudio provides an
-  environment that allows you to
-
+* The best way to achieve this is to write scripts. 
 
 ### Interacting with R
 
@@ -116,12 +114,37 @@ same time as the `-` key) will write ` <- ` in a single keystroke.
 ls(pattern = "y")
 ```
 
+### Finding help
+
+Any function or data variables that are distributed by R or any of its
+valid packages is fully documented. The documentation can be accessed
+in two equivalent ways:
+
+```{r, eval=FALSE}
+?setwd
+help("setwd")
+```
+
+Some packages also provide high-level documentation that provide an
+overview of the package. These documents are called vignettes:
+
+```{r, eval=FALSE}
+vignette(package = "Matrix")
+vignette("Introduction", package = "Matrix")
+```
+
 ### Quitting
 
-To quit R, use the `q()` function, which will ask if you want to store
-all the variables in your workspace in a file called (by default)
-`.RData` in the working directory. Inidivual variables can be saved
-with `save` and later on load back again with `load`.
+To quit R, use the
+
+```{r, eval=FALSE}
+q()
+```
+
+function, which will ask if you want to store all the variables in
+your workspace in a file called (by default) `.RData` in the working
+directory. Inidivual variables can be saved with `save` and later on
+load back again with `load`.
 
 ```{r, eval=TRUE}
 save(y, file = "y.RData")

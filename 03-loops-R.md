@@ -268,56 +268,77 @@ length(vowels)
 >
 > 1. R has a built-in function called `seq` that creates a list of numbers:
 >
-> ```{r}
+> 
+> ~~~{.r}
 > seq(3)
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] 1 2 3
+> 
+> ~~~
 >
 > Using `seq`, write a function that prints the first **N** natural numbers, one per line:
 >
-> ```{r, echo=-1}
-> print_N <- function(N) {
->   nseq <- seq(N)
->   for (num in nseq) {
->     print(num)
->   }
-> }
+> 
+> ~~~{.r}
 > print_N(3)
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] 1
+> [1] 2
+> [1] 3
+> 
+> ~~~
 >
 > 2. Exponentiation is built into R:
 >
-> ```{r}
+> 
+> ~~~{.r}
 > 2^4
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] 16
+> 
+> ~~~
 >
 > Write a function called `expo` that uses a loop to calculate the same result.
-> ```{r, echo=-1}
-> expo <- function(base, power) {
->   result <- 1
->   for (i in seq(power)) {
->     result <- result * base
->   }
->   return(result)
-> }
+> 
+> ~~~{.r}
 > expo(2, 4)
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] 16
+> 
+> ~~~
 >
 > 3. Write a function called `total` that calculates the sum of the values in a vector.
 > (R has a built-in function called `sum` that does this for you.
 > Please don't use it for this exercise.)
 >
-> ```{r, echo=-1}
-> total <- function(vec) {
->   #calculates the sum of the values in a vector
->   vec_sum <- 0
->   for (num in vec) {
->     vec_sum <- vec_sum + num
->   }
->   return(vec_sum)
-> }
+> 
+> ~~~{.r}
 > ex_vec <- c(4, 8, 15, 16, 23, 42)
 > total(ex_vec)
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] 108
+> 
+> ~~~
 
 ### Processing Multiple Files
 

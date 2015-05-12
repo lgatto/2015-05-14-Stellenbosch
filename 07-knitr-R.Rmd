@@ -11,31 +11,353 @@ source("tools/chunk-options.R")
 
 > ## Objectives {.objectives}
 >
-> FIXME: Write these
+> * Understand the concept of dynamic documents are reproducible
+>   research
+> * Learn R markdown basics
+> * Produce a simple vignette
 
-`Knitr` is an R package that makes your code neat, pretty, and shows your notes, code, and output simultaneously in an `html` document. You create these documents in `.Rmd` files. You can write in `LateX` or `md`. 
 
-knitr extracts R code in the input document (.Rmd), evaluates it and writes the results to the output document (html). There are two types of R code: chunks (code as separate paragraphs) and inline R code.
+**This content is adapted from the [RStudio R Markdown - Dynamic Documents of R](http://rmarkdown.rstudio.com/), [Markdown basics](http://rmarkdown.rstudio.com/authoring_basics.html) [R code chunks](http://rmarkdown.rstudio.com/authoring_rcodechunks.html) and tutotials.**
+
+R Markdown is an authoring format that enables easy creation of
+dynamic documents, presentations, and reports from R. It combines the
+core syntax of
+[markdown](http://daringfireball.net/projects/markdown/basics) (an
+easy-to-write plain text format) with embedded R code chunks that are
+run so their output can be included in the final document. R Markdown
+documents are fully *reproducible* (they can be automatically
+regenerated whenever underlying R code or data changes).
+
+
+This document describes R Markdown v2 based on
+[knitr](http://yihui.name/knitr/) and
+[pandoc](http://johnmacfarlane.net/pandoc/). This implementation
+brings many enhancements to R Markdown; we will focus the generation
+of HTML, PDF and MS Word documents.
+
+Note that PDF output requires a full installation of TeX.
+
+> ## Tip {.callout}
+>
+> We would also like to warn against MS Word, and this breaking the
+> support for reproducibility. The final, compiled document should be
+> used to rendering; editing should be performed on the original
+> documents.
+
+### Installation
+
+You can install the R Markdown package from CRAN as follows:
 
 ```{r, eval=FALSE}
 install.packages("knitr")
-```	
-```{r}
-library(knitr)
-```    
-
-Restart RStudio. 
-Open a new `Rmd` file. 
-
-In Rmd, anything between lines that start and end with triple quotes ``` will be run as R code.
-
-```{r}
-summary(cars)
+install.packages("rmarkdown")
 ```
 
-> ## Challenge - Using KnitR to produce a report {.challenge}
+### Markdown Basics
+
+Markdown is a simple formatting language designed to make authoring
+content easy for everyone. Rather than writing complex markup code
+(e.g. HTML or LaTeX), Markdown enables the use of a syntax much more
+like plain-text email. For example the file on the left shows basic
+Markdown and the resulting output on the right:
+
+![Markdown overview](./img/markdownOverview.png)
+
+
+#### Emphasis
+
+```
+*italic*   **bold**
+
+_italic_   __bold__</code></pre>
+```
+
+#### Headers
+
+```
+## Header 2
+
+### Header 3
+```
+
+#### Lists
+
+Unordered List:
+```
+* Item 1
+* Item 2
+    + Item 2a
+    + Item 2b
+```
+Ordered List:
+```
+1. Item 1
+2. Item 2
+3. Item 3
+    + Item 3a
+    + Item 3b
+```
+
+#### Links
+Use a plain http address or add a link to a phrase:
+```
+http://example.com
+
+[linked phrase](http://example.com)
+```
+
+#### Images
+
+Images on the web or local files in the same directory:
+```
+![alt text](http://example.com/logo.png)
+
+![alt text](figures/img.png)
+```
+
+#### Blockquotes
+
+```
+A friend once said:
+
+> It's always better to give
+> than to receive.
+```
+
+#### Plain Code Blocks
+
+Plain code blocks are displayed in a fixed-width font but not evaulated
+
+```
+This text is displayed verbatim / preformatted
+```
+
+#### Inline Code
+
+```
+We defined the `add` function to
+compute the sum of two numbers.
+LaTeX Equations
+```
+
+#### Horizontal Rule / Page Break
+
+Three or more asterisks or dashes:
+```
+'******
+
+------
+```
+
+#### Tables
+
+```
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+```
+
+#### Miscellaneous
+
+```
+superscript^2^
+
+~~strikethrough~~
+```
+
+#### Embedding Equations
+
+You can embed LaTeX or MathML equations in R Markdown files using the
+following syntax:
+
+* `$equation$` for inline equations (note there must not be white
+  space adjacent to the `$` delimiters)
+* `$$ equation $$` for display equations
+* `<math>...</math>` for MathML equations.
+
+For example:
+
+![Equation Inline](./img/equations_inline.png)
+
+### R Code Chunks
+
+Within an R Markdown file, R Code Chunks can be embedded using the
+native Markdown syntax for fenced code regions. For example, the
+following code chunk computes a data summary and renders a plot as a
+PNG image:
+
+![Markdown Chunk](./img/markdownChunk.png)
+
+#### Basic Usage
+
+R code chunks can be used as a means render R output into documents or
+to simply display code for illustration. Here is a simple R code chunk
+that will result in both the code and it's output being included:
+
+<pre><code>&#96;&#96;&#96;{r}
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+
+
+To display the output of a code chunk but not the underlying R code,
+you specify the `echo=FALSE` option:
+
+<pre><code>&#96;&#96;&#96;{r, echo=FALSE}
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+
+Note that R code chunks can also be used to render plots. To display a
+plot while omitting the code used to generate the plot you'd do this:
+
+<pre><code>&#96;&#96;&#96;{r, echo=FALSE}
+plot(cars)
+&#96;&#96;&#96;</code></pre>
+
+To display R code without evaluating it, you specify the eval=FALSE chunk option:
+
+<pre><code>&#96;&#96;&#96;{r, eval=FALSE}
+summary(cars)
+&#96;&#96;&#96;</code></pre>
+
+### Inline R Code
+
+You can also evaluate R expressions inline by enclosing the expression
+within a single back-tick qualified with `r`. For example, the
+following code:
+
+![Markdown Inline](./img/markdownInline.png)
+
+Results in this output: "I counted 2 red trucks on the highway."
+
+#### Table Output
+
+By default data frames and matrixes are output as they would be in the
+R terminal (in a monospaced font). However, if you prefer that data be
+displayed with additional formatting you can use the `knitr::kable`
+function. For example:
+
+<pre><code>&#96;&#96;&#96;{r, results='asis'}
+knitr::kable(mtcars)
+&#96;&#96;&#96;</code></pre>
+
+Note the use of the `results='asis'` chunk option. This is required to
+ensure that the raw table output isn’t processed furthur by knitr. The
+kable function includes several options to control the maximum number
+of digits for numeric columns, alignment, etc (refer to the knitr
+package documentation for additional details).
+
+### Rendering Output
+
+There are two ways to render an R Markdown document into it's final
+output format. If you are using RStudio, then the "Knit" command
+(`Ctrl+Shift+K`) will render the document and display a preview of it.
+
+If you are not using RStudio then you simply need to call the
+`rmarkdown::render` function, for example:
+
+```{r, eval=FALSE}
+rmarkdown::render("input.Rmd")
+```
+
+Note that in the case using the "Knit" button in RStudio the basic
+mechanism is the same (RStudio calls the `rmarkdown::render` function
+under the hood).
+
+
+### Output Options
+
+R Markdown documents can contain a metadata section that includes both
+title, author, and date information as well as options for customizing
+output. For example, this metadata included at the top of an Rmd file
+adds a table of contents and chooses a different HTML theme:
+
+```
+---
+title: "Sample Document"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
+```
+
+R Markdown has built in support for several output formats (HTML, PDF,
+and MS Word documents as well as Beamer presentations). These formats
+can also be specified in metadata, for example:
+
+```
+---
+title: "Sample Document"
+output:
+  pdf_document:
+    toc: true
+    highlight: zenburn
+---
+```
+
+If you aren’t specifying format options you can also just use a simple format name:
+
+```
+---
+title: "Sample Document"
+output: pdf_document
+---
+```
+
+Multiple formats can be specified in metadata:
+
+```
+---
+title: "Sample Document"
+output:
+  html_document:
+    toc: true
+    theme: united
+---
+```
+
+If you are using `rmarkdown::render` then you can pass a format name
+to `render` to select from the available formats. For example:
+
+```{r, eval=FALSE}
+render("input.Rmd", "pdf_document")
+```
+
+
+You can also render all formats defined in an input file with:
+
+```{r, eval=FALSE}
+render("input.Rmd", "all")
+```
+
+
+## Learning More
+
+With the basics described above you can get started with R Markdown
+right away. To learn more see:
+
+* <a href="http://rmarkdown.rstudio.com/authoring_basics.html">Markdown
+  Basics</a>, which describes the most commonly used markdown
+  constructs.
+* <a href="http://rmarkdown.rstudio.com/authoring_rcodechunks.html">R
+  Code Chunks</a>, which goes into more depth on customizing the
+  behavior of embedded R code.
+* <a
+  href="http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">R
+  Markdown Cheat Sheet (PDF)</a>, a quick guide to the most commonly
+  used markdown syntax, knitr options, and output formats.
+* <a
+  href="http://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R
+  Markdown Reference Guide (PDF)</a>, a more comprehensive reference
+  guide to markdown, knitr, and output format options.  
+
+
+> ## Challenge - Using `knitr` to produce a report {.challenge}
 >
 > 1. Open an new .Rmd script and save it as inflammation_report.Rmd
-> 2. Copy and paste the code as embedded R chunks to read in the data and plot average inflammation, or the heat map that we created.
-> 3. Add a few notes describing what the code does and what the main findings are.
+> 2. Copy and paste the code as embedded R chunks to read in the data
+>    and plot average inflammation, or the heat map that we created.
+> 3. Add a few notes describing what the code does and what the main
+>    findings are.
 > 4. `KNIT` and view the html

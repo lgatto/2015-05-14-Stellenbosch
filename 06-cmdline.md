@@ -328,13 +328,31 @@ Rscript readings-02.R data/inflammation-01.csv
 >  + Write a command-line program that does addition and subtraction.
 >  **Hint:** Everything argument read from the command-line is interpreted as a character [string](reference.html#string).
 >  You can convert from a string to a number using the function `as.numeric`.
-> ```{r, engine='bash'}
+> 
+> ~~~{.r}
 > Rscript arith.R 1 + 2
-> ```
+> ~~~
+> 
+> 
+> 
+> 
+> ~~~{.output}
+> 3
+> 
+> ~~~
 >
-> ```{r, engine='bash'}
+> 
+> ~~~{.r}
 > Rscript arith.R 3 - 4
-> ```
+> ~~~
+> 
+> 
+> 
+> 
+> ~~~{.output}
+> -1
+> 
+> ~~~
 >
 >  + What goes wrong if you try to add multiplication using `*` to the program?
 >
@@ -344,15 +362,23 @@ Rscript readings-02.R data/inflammation-01.csv
 >
 >  + Using the function `list.files` introduced in a previous [lesson](03-loops-R.html), write a command-line program, `find-pattern.R`, that lists all the files in the current directory that contain a specific pattern:
 >
-> ```{r, engine='bash'}
+> 
+> ~~~{.r}
 > # For example, searching for the pattern "print-args" returns the two scripts we
 > # wrote earlier
 > Rscript find-pattern.R print-args
-> ```
+> ~~~
+> 
+> 
+> 
+> 
+> ~~~{.output}
+> print-args.R
+> print-args-trailing.R
+> 
+> ~~~
 >
-> ```{r third-answer, include=FALSE, engine='bash'}
-> cat find-pattern.R
-> ```
+
 
 ### Handling Multiple Files
 

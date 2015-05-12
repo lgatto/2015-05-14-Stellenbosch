@@ -556,13 +556,33 @@ We'll learn why this is so in the next lesson.
 > A subsection of a data frame is called a [slice](reference.html#slice).
 > We can take slices of character vectors as well:
 >
-> ```{r}
+> 
+> ~~~{.r}
 > animal <- c("m", "o", "n", "k", "e", "y")
 > # first three characters
 > animal[1:3]
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] "m" "o" "n"
+> 
+> ~~~
+> 
+> 
+> 
+> ~~~{.r}
 > # last three characters
 > animal[4:6]
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] "k" "e" "y"
+> 
+> ~~~
 >
 > 1.  If the first four characters are selected using the slice `animal[1:4]`, how can we obtain the first four characters in reverse order?
 >
@@ -639,11 +659,11 @@ The maximum value rises and falls perfectly smoothly, while the minimum seems to
 * Use `#` to add comments to programs.
 * Use `mean`, `max`, `min` and `sd` to calculate simple statistics.
 * Use `apply` to calculate statistics across the rows or columns of a data frame.
-* Use `plot` to create simple visualizations.
+* Use `plot` to create simple visualizations. (We will learn more about plotting in another session)
 
 #### Next Steps
 
 Our work so far has convinced us that something's wrong with our first data file.
 We would like to check the other 11 the same way, but typing in the same commands repeatedly is tedious and error-prone.
 Since computers don't get bored (that we know of), we should create a way to do a complete analysis with a single command, and then figure out how to repeat that step once for each file.
-These operations are the subjects of the next two lessons.
+These operations are the subjects of the next lessons.

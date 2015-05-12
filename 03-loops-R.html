@@ -160,18 +160,32 @@ letter</code></pre>
 <ol style="list-style-type: decimal">
 <li>R has a built-in function called <code>seq</code> that creates a list of numbers:</li>
 </ol>
-<p><code>{r} seq(3)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">seq</span>(<span class="dv">3</span>)</code></pre>
+<pre class="output"><code>[1] 1 2 3
+</code></pre>
 <p>Using <code>seq</code>, write a function that prints the first <strong>N</strong> natural numbers, one per line:</p>
-<p><code>{r, echo=-1} print_N &lt;- function(N) {   nseq &lt;- seq(N)   for (num in nseq) {     print(num)   } } print_N(3)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print_N</span>(<span class="dv">3</span>)</code></pre>
+<pre class="output"><code>[1] 1
+[1] 2
+[1] 3
+</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Exponentiation is built into R:</li>
 </ol>
-<p><code>{r} 2^4</code></p>
-<p>Write a function called <code>expo</code> that uses a loop to calculate the same result. <code>{r, echo=-1} expo &lt;- function(base, power) {   result &lt;- 1   for (i in seq(power)) {     result &lt;- result * base   }   return(result) } expo(2, 4)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span>^<span class="dv">4</span></code></pre>
+<pre class="output"><code>[1] 16
+</code></pre>
+<p>Write a function called <code>expo</code> that uses a loop to calculate the same result.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">expo</span>(<span class="dv">2</span>, <span class="dv">4</span>)</code></pre>
+<pre class="output"><code>[1] 16
+</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Write a function called <code>total</code> that calculates the sum of the values in a vector. (R has a built-in function called <code>sum</code> that does this for you. Please don’t use it for this exercise.)</li>
 </ol>
-<p><code>{r, echo=-1} total &lt;- function(vec) {   #calculates the sum of the values in a vector   vec_sum &lt;- 0   for (num in vec) {     vec_sum &lt;- vec_sum + num   }   return(vec_sum) } ex_vec &lt;- c(4, 8, 15, 16, 23, 42) total(ex_vec)</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">ex_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">23</span>, <span class="dv">42</span>)
+<span class="kw">total</span>(ex_vec)</code></pre>
+<pre class="output"><code>[1] 108
+</code></pre>
 </blockquote>
 <h3 id="processing-multiple-files">Processing Multiple Files</h3>
 <p>We now have almost everything we need to process all our data files. The only thing that’s missing is a function that finds files whose names match a pattern. We do not need to write it ourselves because R already has a function to do this called <code>list.files</code>.</p>

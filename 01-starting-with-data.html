@@ -251,7 +251,15 @@ patient_1 &lt;-<span class="st"> </span>dat[<span class="dv">1</span>, ]
 <blockquote>
 <h2>Challenge - Slicing (subsetting) data</h2>
 <p>A subsection of a data frame is called a <a href="reference.html#slice">slice</a>. We can take slices of character vectors as well:</p>
-<p><code>{r} animal &lt;- c(&quot;m&quot;, &quot;o&quot;, &quot;n&quot;, &quot;k&quot;, &quot;e&quot;, &quot;y&quot;) # first three characters animal[1:3] # last three characters animal[4:6]</code></p>
+<pre class="sourceCode r"><code class="sourceCode r">animal &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;o&quot;</span>, <span class="st">&quot;n&quot;</span>, <span class="st">&quot;k&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;y&quot;</span>)
+<span class="co"># first three characters</span>
+animal[<span class="dv">1</span>:<span class="dv">3</span>]</code></pre>
+<pre class="output"><code>[1] &quot;m&quot; &quot;o&quot; &quot;n&quot;
+</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># last three characters</span>
+animal[<span class="dv">4</span>:<span class="dv">6</span>]</code></pre>
+<pre class="output"><code>[1] &quot;k&quot; &quot;e&quot; &quot;y&quot;
+</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>If the first four characters are selected using the slice <code>animal[1:4]</code>, how can we obtain the first four characters in reverse order?</p></li>
 <li><p>What is <code>animal[-1]</code>? What is <code>animal[-4]</code>? Given those answers, explain what <code>animal[-1:-4]</code> does.</p></li>
@@ -296,10 +304,10 @@ patient_1 &lt;-<span class="st"> </span>dat[<span class="dv">1</span>, ]
 <li>Use <code>#</code> to add comments to programs.</li>
 <li>Use <code>mean</code>, <code>max</code>, <code>min</code> and <code>sd</code> to calculate simple statistics.</li>
 <li>Use <code>apply</code> to calculate statistics across the rows or columns of a data frame.</li>
-<li>Use <code>plot</code> to create simple visualizations.</li>
+<li>Use <code>plot</code> to create simple visualizations. (We will learn more about plotting in another session)</li>
 </ul>
 <h4 id="next-steps">Next Steps</h4>
-<p>Our work so far has convinced us that something’s wrong with our first data file. We would like to check the other 11 the same way, but typing in the same commands repeatedly is tedious and error-prone. Since computers don’t get bored (that we know of), we should create a way to do a complete analysis with a single command, and then figure out how to repeat that step once for each file. These operations are the subjects of the next two lessons.</p>
+<p>Our work so far has convinced us that something’s wrong with our first data file. We would like to check the other 11 the same way, but typing in the same commands repeatedly is tedious and error-prone. Since computers don’t get bored (that we know of), we should create a way to do a complete analysis with a single command, and then figure out how to repeat that step once for each file. These operations are the subjects of the next lessons.</p>
         </div>
       </div>
       </article>
