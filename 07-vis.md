@@ -1,0 +1,176 @@
+---
+layout: page
+title: Programming with R
+subtitle: Visualisation
+---
+
+> ## Objectives {.objectives}
+>
+> * Learn base graphics plotting function
+> * Learn some basic customisation
+> * Other plotting frameworks: `ggplot2` and `lattice`
+
+
+
+> ## Challenge - Using conditions to change behaviour {.challenge}
+>
+>  + Write a function, `plot_dist`, that plots a boxplot if the length of the vector is greater than a specified threshold and a stripchart otherwise.
+>  To do this you'll use the R functions `boxplot` and `stripchart`.
+>
+>
+>```r
+> dat <- read.csv("data/inflammation-01.csv", header = FALSE)
+> plot_dist(dat[, 10], threshold = 10)     # day (column) 10
+>```
+>
+>![plot of chunk using-conditions-01](figure/using-conditions-01-1.png) 
+>
+>```r
+> plot_dist(dat[1:5, 10], threshold = 10)  # samples (rows) 1-5 on day (column) 10
+>```
+>
+>![plot of chunk using-conditions-01](figure/using-conditions-01-2.png) 
+>
+>  + One of your collaborators prefers to see the distributions of the larger vectors as a histogram instead of as a boxplot.  In order to choose between a histogram and a boxplot we will edit the function `plot_dist` and add an additional argument `use_boxplot`.  By defualt we will set `use_boxplot` to `TRUE` which will create a boxplot when the vector is longer than `threshold`.  When `use_boxplot` is set to `FALSE`, `plot_dist` will instead plot a histogram for the larger vectors.  As before, if the length of the vector is shorter than `threshold`, `plot_dist` will create a stripchart.  A histogram is made with the `hist` command in R.
+>
+> 
+> ```r
+> dat <- read.csv("data/inflammation-01.csv", header = FALSE)
+> plot_dist(dat[, 10], threshold = 10, use_boxplot = TRUE)   # day (column) 10 - create boxplot
+> ```
+> 
+> ![plot of chunk conditional-challenge-hist](figure/conditional-challenge-hist-1.png) 
+> 
+> ```r
+> plot_dist(dat[, 10], threshold = 10, use_boxplot = FALSE)  # day (column) 10 - create histogram
+> ```
+> 
+> ![plot of chunk conditional-challenge-hist](figure/conditional-challenge-hist-2.png) 
+> 
+> ```r
+> plot_dist(dat[1:5, 10], threshold = 10)                    # samples (rows) 1-5 on day (column) 10
+> ```
+> 
+> ![plot of chunk conditional-challenge-hist](figure/conditional-challenge-hist-3.png) 
+
+### Saving automatically generated figures
+
+Now that we know how to have R make decisions based on input values, let's update `analyze`:
+
+
+```r
+analyze <- function(filename, output = NULL) {
+  # Plots the average, min, and max inflammation over time.
+  # Input:
+  #    filename: character string of a csv file
+  #    output: character string of pdf file for saving
+  if (!is.null(output)) {
+    pdf(output)
+  }
+  dat <- read.csv(file = filename, header = FALSE)
+  avg_day_inflammation <- apply(dat, 2, mean)
+  plot(avg_day_inflammation)
+  max_day_inflammation <- apply(dat, 2, max)
+  plot(max_day_inflammation)
+  min_day_inflammation <- apply(dat, 2, min)
+  plot(min_day_inflammation)
+  if (!is.null(output)) {
+    dev.off()
+  }
+}
+```
+
+We added an argument, `output`, that by default is set to `NULL`.
+An `if` statement at the beginning checks the argument `output` to decide whether or not to save the plots to a pdf.
+Let's break it down.
+The function `is.null` returns `TRUE` if a variable is `NULL` and `FALSE` otherwise.
+The exclamation mark, `!`, stands for "not".
+Therefore the line in the `if` block is only executed if `output` is "not null".
+
+
+```r
+output <- NULL
+is.null(output)
+```
+
+```
+## [1] TRUE
+```
+
+```r
+!is.null(output)
+```
+
+```
+## [1] FALSE
+```
+
+Now we can use `analyze` both interactively:
+
+
+```r
+analyze("data/inflammation-01.csv")
+```
+
+![plot of chunk inflammation-01](figure/inflammation-01-1.png) ![plot of chunk inflammation-01](figure/inflammation-01-2.png) ![plot of chunk inflammation-01](figure/inflammation-01-3.png) 
+
+and to save plots:
+
+
+```r
+analyze("data/inflammation-01.csv", output = "inflammation-01.pdf")
+```
+
+This now works well when we want to process one data file at a time, but how can we specify the output file in `analyze_all`?
+We need to substitute the filename ending "csv" with "pdf", which we can do using the function `sub`:
+
+
+```r
+f <- "data/inflammation-01.csv"
+sub("csv", "pdf", f)
+```
+
+```
+## [1] "data/inflammation-01.pdf"
+```
+
+Now let's update `analyze_all`:
+
+
+```r
+analyze_all <- function(pattern) {
+  # Runs the function analyze for each file in the current working directory
+  # that contains the given pattern.
+  filenames <- list.files(path = "data", pattern = pattern, full.names = TRUE)
+  for (f in filenames) {
+    pdf_name <- sub("csv", "pdf", f)
+    analyze(f, output = pdf_name)
+  }
+}
+```
+
+Now we can save all of the results with just one line of code:
+
+
+```r
+analyze_all("inflammation")
+```
+
+```
+## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input
+```
+
+Now if we need to make any changes to our analysis, we can edit the `analyze` function and quickly regenerate all the figures with `analzye_all`.
+
+> ## Challenge - Changing the behaviour of the plot command {.challenge}
+>
+>  + One of your collaborators asks if you can recreate the figures with lines instead of points.
+>  Find the relevant argument to `plot` by reading the documentation (`?plot`), update `analyze`, and then recreate all the figures with `analyze_all`.
+
+
+
+<div class="keypoints" markdown="1">
+#### Key Points
+
+* Save a plot in a pdf file using `pdf("name.pdf")` and stop writing
+  to the pdf file with `dev.off()`.

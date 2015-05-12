@@ -249,184 +249,32 @@ if (1 > 0 | -1 > 0) {
 
 In this case, "either" means "either or both", not "either one or the other but not both".
 
-
 > ## Challenge - Using conditions to change behaviour {.challenge}
 >
->  + Write a function, `plot_dist`, that plots a boxplot if the length of the vector is greater than a specified threshold and a stripchart otherwise.
->  To do this you'll use the R functions `boxplot` and `stripchart`.
+> Write a function that converts between C, F and K temperatures.  The
+> function will need three arguments: (1) temperature (`t`), a
+> numeric, (2) from unit (`from`), a character and (3) to unit
+> (`to`). They will need default values, e.g `t = 0`, `from = "C"` and
+> `to = "K"`.
 >
->
->~~~{.r}
-> dat <- read.csv("data/inflammation-01.csv", header = FALSE)
-> plot_dist(dat[, 10], threshold = 10)     # day (column) 10
->~~~
->
-><img src="fig/04-cond-using-conditions-01-1.png" title="plot of chunk using-conditions-01" alt="plot of chunk using-conditions-01" style="display: block; margin: auto;" />
->
->~~~{.r}
-> plot_dist(dat[1:5, 10], threshold = 10)  # samples (rows) 1-5 on day (column) 10
->~~~
->
-><img src="fig/04-cond-using-conditions-01-2.png" title="plot of chunk using-conditions-01" alt="plot of chunk using-conditions-01" style="display: block; margin: auto;" />
->
->  + One of your collaborators prefers to see the distributions of the larger vectors as a histogram instead of as a boxplot.  In order to choose between a histogram and a boxplot we will edit the function `plot_dist` and add an additional argument `use_boxplot`.  By defualt we will set `use_boxplot` to `TRUE` which will create a boxplot when the vector is longer than `threshold`.  When `use_boxplot` is set to `FALSE`, `plot_dist` will instead plot a histogram for the larger vectors.  As before, if the length of the vector is shorter than `threshold`, `plot_dist` will create a stripchart.  A histogram is made with the `hist` command in R.
->
-> 
-> ~~~{.r}
-> dat <- read.csv("data/inflammation-01.csv", header = FALSE)
-> plot_dist(dat[, 10], threshold = 10, use_boxplot = TRUE)   # day (column) 10 - create boxplot
-> ~~~
-> 
-> <img src="fig/04-cond-conditional-challenge-hist-1.png" title="plot of chunk conditional-challenge-hist" alt="plot of chunk conditional-challenge-hist" style="display: block; margin: auto;" />
-> 
-> ~~~{.r}
-> plot_dist(dat[, 10], threshold = 10, use_boxplot = FALSE)  # day (column) 10 - create histogram
-> ~~~
-> 
-> <img src="fig/04-cond-conditional-challenge-hist-2.png" title="plot of chunk conditional-challenge-hist" alt="plot of chunk conditional-challenge-hist" style="display: block; margin: auto;" />
-> 
-> ~~~{.r}
-> plot_dist(dat[1:5, 10], threshold = 10)                    # samples (rows) 1-5 on day (column) 10
-> ~~~
-> 
-> <img src="fig/04-cond-conditional-challenge-hist-3.png" title="plot of chunk conditional-challenge-hist" alt="plot of chunk conditional-challenge-hist" style="display: block; margin: auto;" />
-
-### Saving automatically generated figures
-
-Now that we know how to have R make decisions based on input values, let's update `analyze`:
-
-
-~~~{.r}
-analyze <- function(filename, output = NULL) {
-  # Plots the average, min, and max inflammation over time.
-  # Input:
-  #    filename: character string of a csv file
-  #    output: character string of pdf file for saving
-  if (!is.null(output)) {
-    pdf(output)
-  }
-  dat <- read.csv(file = filename, header = FALSE)
-  avg_day_inflammation <- apply(dat, 2, mean)
-  plot(avg_day_inflammation)
-  max_day_inflammation <- apply(dat, 2, max)
-  plot(max_day_inflammation)
-  min_day_inflammation <- apply(dat, 2, min)
-  plot(min_day_inflammation)
-  if (!is.null(output)) {
-    dev.off()
-  }
-}
-~~~
-
-We added an argument, `output`, that by default is set to `NULL`.
-An `if` statement at the beginning checks the argument `output` to decide whether or not to save the plots to a pdf.
-Let's break it down.
-The function `is.null` returns `TRUE` if a variable is `NULL` and `FALSE` otherwise.
-The exclamation mark, `!`, stands for "not".
-Therefore the line in the `if` block is only executed if `output` is "not null".
-
-
-~~~{.r}
-output <- NULL
-is.null(output)
-~~~
-
-
-
-~~~{.output}
-[1] TRUE
-
-~~~
-
-
-
-~~~{.r}
-!is.null(output)
-~~~
-
-
-
-~~~{.output}
-[1] FALSE
-
-~~~
-
-Now we can use `analyze` both interactively:
-
-
-~~~{.r}
-analyze("data/inflammation-01.csv")
-~~~
-
-<img src="fig/04-cond-inflammation-01-1.png" title="plot of chunk inflammation-01" alt="plot of chunk inflammation-01" style="display: block; margin: auto;" /><img src="fig/04-cond-inflammation-01-2.png" title="plot of chunk inflammation-01" alt="plot of chunk inflammation-01" style="display: block; margin: auto;" /><img src="fig/04-cond-inflammation-01-3.png" title="plot of chunk inflammation-01" alt="plot of chunk inflammation-01" style="display: block; margin: auto;" />
-
-and to save plots:
-
-
-~~~{.r}
-analyze("data/inflammation-01.csv", output = "inflammation-01.pdf")
-~~~
-
-This now works well when we want to process one data file at a time, but how can we specify the output file in `analyze_all`?
-We need to substitute the filename ending "csv" with "pdf", which we can do using the function `sub`:
-
-
-~~~{.r}
-f <- "data/inflammation-01.csv"
-sub("csv", "pdf", f)
-~~~
-
-
-
-~~~{.output}
-[1] "data/inflammation-01.pdf"
-
-~~~
-
-Now let's update `analyze_all`:
-
-
-~~~{.r}
-analyze_all <- function(pattern) {
-  # Runs the function analyze for each file in the current working directory
-  # that contains the given pattern.
-  filenames <- list.files(path = "data", pattern = pattern, full.names = TRUE)
-  for (f in filenames) {
-    pdf_name <- sub("csv", "pdf", f)
-    analyze(f, output = pdf_name)
-  }
-}
-~~~
-
-Now we can save all of the results with just one line of code:
-
-
-~~~{.r}
-analyze_all("inflammation")
-~~~
-
-Now if we need to make any changes to our analysis, we can edit the `analyze` function and quickly regenerate all the figures with `analzye_all`.
-
-> ## Challenge - Changing the behaviour of the plot command {.challenge}
->
->  + One of your collaborators asks if you can recreate the figures with lines instead of points.
->  Find the relevant argument to `plot` by reading the documentation (`?plot`), update `analyze`, and then recreate all the figures with `analyze_all`.
-
+> Conversion formulas: `F = 9/5 C + 32` and `K = C + 273.15`
 
 
 <div class="keypoints" markdown="1">
 #### Key Points
 
-*   Save a plot in a pdf file using `pdf("name.pdf")` and stop writing to the pdf file with `dev.off()`.
-*   Use `if (condition)` to start a conditional statement, `else if (condition)` to provide additional tests, and `else` to provide a default.
-*   The bodies of conditional statements must be surrounded by curly braces `{ }`.
-*   Use `==` to test for equality.
-*   `X & Y` is only true if both X and Y are true.
-*   `X | Y` is true if either X or Y, or both, are true.
-</div>
+* Use `if (condition)` to start a conditional statement, `else if
+  (condition)` to provide additional tests, and `else` to provide a
+  default.
+* The bodies of conditional statements must be surrounded by curly
+  braces `{ }`.
+* Use `==` to test for equality.
+* `X & Y` is only true if both X and Y are true.
+* `X | Y` is true if either X or Y, or both, are true.  </div>
 
 #### Next Steps
 
-We have now seen the basics of interactively building R code.
-The last thing we need to learn is how to build command-line programs that we can use in pipelines and shell scripts, so that we can integrate our tools with other people's work.
-This will be the subject of our next and final lesson.
+We have now seen the basics of interactively building R code. We will
+not move on on more plotting and conclude with reproducible report
+generation.
+

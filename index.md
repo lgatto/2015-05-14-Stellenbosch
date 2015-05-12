@@ -39,7 +39,7 @@ title: Programming with R
 | 10:30 | 	Tea time| |
 | 11:00 | [Making Choices](04-cond.html) |	Anelda/David |
 | 12:30 | 	Lunch	| |
-| 13:30 | 	Visualisation	| Laurent |
+| 13:30 | 	[Visualisation](07-vis.html) | Laurent |
 | 15:00 | 	Tea time	| | 
 | 15:30 | [Writing reproducible documents](07-knitr-R.html) | Laurent |
 | 17:00 | 	Wrap-up and close	| |

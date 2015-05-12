@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Programming with R</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <h1 class="title">Programming with R</h1>
+          <h2 class="subtitle">Visualisation</h2>
+<blockquote>
+<h2>Objectives</h2>
+<ul>
+<li>Learn base graphics plotting function</li>
+<li>Learn some basic customisation</li>
+<li>Other plotting frameworks: <code>ggplot2</code> and <code>lattice</code></li>
+</ul>
+</blockquote>
+<blockquote>
+<h2>Challenge - Using conditions to change behaviour</h2>
+<ul>
+<li>Write a function, <code>plot_dist</code>, that plots a boxplot if the length of the vector is greater than a specified threshold and a stripchart otherwise. To do this you’ll use the R functions <code>boxplot</code> and <code>stripchart</code>.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)
+<span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)     <span class="co"># day (column) 10</span></code></pre>
+<div class="figure">
+<img src="figure/using-conditions-01-1.png" alt="plot of chunk using-conditions-01" /><p class="caption">plot of chunk using-conditions-01</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)  <span class="co"># samples (rows) 1-5 on day (column) 10</span></code></pre>
+<div class="figure">
+<img src="figure/using-conditions-01-2.png" alt="plot of chunk using-conditions-01" /><p class="caption">plot of chunk using-conditions-01</p>
+</div>
+<ul>
+<li>One of your collaborators prefers to see the distributions of the larger vectors as a histogram instead of as a boxplot. In order to choose between a histogram and a boxplot we will edit the function <code>plot_dist</code> and add an additional argument <code>use_boxplot</code>. By defualt we will set <code>use_boxplot</code> to <code>TRUE</code> which will create a boxplot when the vector is longer than <code>threshold</code>. When <code>use_boxplot</code> is set to <code>FALSE</code>, <code>plot_dist</code> will instead plot a histogram for the larger vectors. As before, if the length of the vector is shorter than <code>threshold</code>, <code>plot_dist</code> will create a stripchart. A histogram is made with the <code>hist</code> command in R.</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)
+<span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>, <span class="dt">use_boxplot =</span> <span class="ot">TRUE</span>)   <span class="co"># day (column) 10 - create boxplot</span></code></pre>
+<div class="figure">
+<img src="figure/conditional-challenge-hist-1.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>, <span class="dt">use_boxplot =</span> <span class="ot">FALSE</span>)  <span class="co"># day (column) 10 - create histogram</span></code></pre>
+<div class="figure">
+<img src="figure/conditional-challenge-hist-2.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)                    <span class="co"># samples (rows) 1-5 on day (column) 10</span></code></pre>
+<div class="figure">
+<img src="figure/conditional-challenge-hist-3.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
+</div>
+</blockquote>
+<h3 id="saving-automatically-generated-figures">Saving automatically generated figures</h3>
+<p>Now that we know how to have R make decisions based on input values, let’s update <code>analyze</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">analyze &lt;-<span class="st"> </span>function(filename, <span class="dt">output =</span> <span class="ot">NULL</span>) {
+  <span class="co"># Plots the average, min, and max inflammation over time.</span>
+  <span class="co"># Input:</span>
+  <span class="co">#    filename: character string of a csv file</span>
+  <span class="co">#    output: character string of pdf file for saving</span>
+  if (!<span class="kw">is.null</span>(output)) {
+    <span class="kw">pdf</span>(output)
+  }
+  dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> filename, <span class="dt">header =</span> <span class="ot">FALSE</span>)
+  avg_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, mean)
+  <span class="kw">plot</span>(avg_day_inflammation)
+  max_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, max)
+  <span class="kw">plot</span>(max_day_inflammation)
+  min_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, min)
+  <span class="kw">plot</span>(min_day_inflammation)
+  if (!<span class="kw">is.null</span>(output)) {
+    <span class="kw">dev.off</span>()
+  }
+}</code></pre>
+<p>We added an argument, <code>output</code>, that by default is set to <code>NULL</code>. An <code>if</code> statement at the beginning checks the argument <code>output</code> to decide whether or not to save the plots to a pdf. Let’s break it down. The function <code>is.null</code> returns <code>TRUE</code> if a variable is <code>NULL</code> and <code>FALSE</code> otherwise. The exclamation mark, <code>!</code>, stands for “not”. Therefore the line in the <code>if</code> block is only executed if <code>output</code> is “not null”.</p>
+<pre class="sourceCode r"><code class="sourceCode r">output &lt;-<span class="st"> </span><span class="ot">NULL</span>
+<span class="kw">is.null</span>(output)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">!<span class="kw">is.null</span>(output)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>Now we can use <code>analyze</code> both interactively:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>)</code></pre>
+<p><img src="figure/inflammation-01-1.png" alt="plot of chunk inflammation-01" /> <img src="figure/inflammation-01-2.png" alt="plot of chunk inflammation-01" /> <img src="figure/inflammation-01-3.png" alt="plot of chunk inflammation-01" /></p>
+<p>and to save plots:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;inflammation-01.pdf&quot;</span>)</code></pre>
+<p>This now works well when we want to process one data file at a time, but how can we specify the output file in <code>analyze_all</code>? We need to substitute the filename ending “csv” with “pdf”, which we can do using the function <code>sub</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> &quot;data/inflammation-01.csv&quot;</span>
+<span class="kw">sub</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;pdf&quot;</span>, f)</code></pre>
+<pre><code>## [1] &quot;data/inflammation-01.pdf&quot;</code></pre>
+<p>Now let’s update <code>analyze_all</code>:</p>
+<pre class="sourceCode r"><code class="sourceCode r">analyze_all &lt;-<span class="st"> </span>function(pattern) {
+  <span class="co"># Runs the function analyze for each file in the current working directory</span>
+  <span class="co"># that contains the given pattern.</span>
+  filenames &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> pattern, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
+  for (f in filenames) {
+    pdf_name &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;pdf&quot;</span>, f)
+    <span class="kw">analyze</span>(f, <span class="dt">output =</span> pdf_name)
+  }
+}</code></pre>
+<p>Now we can save all of the results with just one line of code:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze_all</span>(<span class="st">&quot;inflammation&quot;</span>)</code></pre>
+<pre><code>## Error in read.table(file = file, header = header, sep = sep, quote = quote, : no lines available in input</code></pre>
+<p>Now if we need to make any changes to our analysis, we can edit the <code>analyze</code> function and quickly regenerate all the figures with <code>analzye_all</code>.</p>
+<blockquote>
+<h2>Challenge - Changing the behaviour of the plot command</h2>
+<ul>
+<li>One of your collaborators asks if you can recreate the figures with lines instead of points. Find the relevant argument to <code>plot</code> by reading the documentation (<code>?plot</code>), update <code>analyze</code>, and then recreate all the figures with <code>analyze_all</code>.</li>
+</ul>
+</blockquote>
+<div class="keypoints" markdown="1">
+<h4 id="key-points">Key Points</h4>
+<ul>
+<li>Save a plot in a pdf file using <code>pdf(&quot;name.pdf&quot;)</code> and stop writing to the pdf file with <code>dev.off()</code>.</li>
+</ul>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="index.html">Home</a>
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/lgatto/2015-05-14-Stellenbosch">Source</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/r-novice-inflammation">Origin</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>
