@@ -16,9 +16,14 @@ minutes: 30
 > * Set default values for function arguments.
 > * Explain why we should divide programs into small, single-purpose functions.
 
-If we only had one data set to analyze, it would probably be faster to load the file into a spreadsheet and use that to plot some simple statistics.
-But we have twelve files to check, and may have more in the future.
-In this lesson, we'll learn how to write a function so that we can repeat several operations with a single command.
+If we only had one data set to analyze, it would probably be faster to
+load the file into a spreadsheet and use that to plot some simple
+statistics.  But we have twelve files to check, and may have more in
+the future, of wanted to be able to track and reproduce our analysis
+(see section on
+[writing reproducible documents](file:///home/lg390/Documents/Teaching/2015-05-14-Stellenbosch/07-knitr-R.html)). In
+this lesson, we'll learn how to write a function so that we can repeat
+several operations with a single command.
 
 ### Defining a function
 
