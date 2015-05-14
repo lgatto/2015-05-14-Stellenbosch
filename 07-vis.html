@@ -34,98 +34,798 @@
 <li>Learn base graphics plotting function</li>
 <li>Learn some basic customisation</li>
 <li>Other plotting frameworks: <code>ggplot2</code> and <code>lattice</code></li>
+<li>Save plot(s) in a pdf file.</li>
 </ul>
 </blockquote>
+<h1 id="motivations">Motivations</h1>
+<p>Anscombe’s quartet are four x-y datasets which have the same traditional statistical properties (mean, variance, correlation, regression line, etc.), yet are very different. These difference become clear when the data are visualised.</p>
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> 
+x1
+</th>
+   <th style="text-align:right;"> 
+x2
+</th>
+   <th style="text-align:right;"> 
+x3
+</th>
+   <th style="text-align:right;"> 
+x4
+</th>
+   <th style="text-align:right;"> 
+y1
+</th>
+   <th style="text-align:right;"> 
+y2
+</th>
+   <th style="text-align:right;"> 
+y3
+</th>
+   <th style="text-align:right;"> 
+y4
+</th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 
+10
+</td>
+   <td style="text-align:right;"> 
+10
+</td>
+   <td style="text-align:right;"> 
+10
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8.04
+</td>
+   <td style="text-align:right;"> 
+9.14
+</td>
+   <td style="text-align:right;"> 
+7.46
+</td>
+   <td style="text-align:right;"> 
+6.58
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+6.95
+</td>
+   <td style="text-align:right;"> 
+8.14
+</td>
+   <td style="text-align:right;"> 
+6.77
+</td>
+   <td style="text-align:right;"> 
+5.76
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+13
+</td>
+   <td style="text-align:right;"> 
+13
+</td>
+   <td style="text-align:right;"> 
+13
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+7.58
+</td>
+   <td style="text-align:right;"> 
+8.74
+</td>
+   <td style="text-align:right;"> 
+12.74
+</td>
+   <td style="text-align:right;"> 
+7.71
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+9
+</td>
+   <td style="text-align:right;"> 
+9
+</td>
+   <td style="text-align:right;"> 
+9
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8.81
+</td>
+   <td style="text-align:right;"> 
+8.77
+</td>
+   <td style="text-align:right;"> 
+7.11
+</td>
+   <td style="text-align:right;"> 
+8.84
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+11
+</td>
+   <td style="text-align:right;"> 
+11
+</td>
+   <td style="text-align:right;"> 
+11
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+8.33
+</td>
+   <td style="text-align:right;"> 
+9.26
+</td>
+   <td style="text-align:right;"> 
+7.81
+</td>
+   <td style="text-align:right;"> 
+8.47
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+14
+</td>
+   <td style="text-align:right;"> 
+14
+</td>
+   <td style="text-align:right;"> 
+14
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+9.96
+</td>
+   <td style="text-align:right;"> 
+8.10
+</td>
+   <td style="text-align:right;"> 
+8.84
+</td>
+   <td style="text-align:right;"> 
+7.04
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+6
+</td>
+   <td style="text-align:right;"> 
+6
+</td>
+   <td style="text-align:right;"> 
+6
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+7.24
+</td>
+   <td style="text-align:right;"> 
+6.13
+</td>
+   <td style="text-align:right;"> 
+6.08
+</td>
+   <td style="text-align:right;"> 
+5.25
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+4
+</td>
+   <td style="text-align:right;"> 
+4
+</td>
+   <td style="text-align:right;"> 
+4
+</td>
+   <td style="text-align:right;"> 
+19
+</td>
+   <td style="text-align:right;"> 
+4.26
+</td>
+   <td style="text-align:right;"> 
+3.10
+</td>
+   <td style="text-align:right;"> 
+5.39
+</td>
+   <td style="text-align:right;"> 
+12.50
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+12
+</td>
+   <td style="text-align:right;"> 
+12
+</td>
+   <td style="text-align:right;"> 
+12
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+10.84
+</td>
+   <td style="text-align:right;"> 
+9.13
+</td>
+   <td style="text-align:right;"> 
+8.15
+</td>
+   <td style="text-align:right;"> 
+5.56
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+7
+</td>
+   <td style="text-align:right;"> 
+7
+</td>
+   <td style="text-align:right;"> 
+7
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+4.82
+</td>
+   <td style="text-align:right;"> 
+7.26
+</td>
+   <td style="text-align:right;"> 
+6.42
+</td>
+   <td style="text-align:right;"> 
+7.91
+</td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 
+5
+</td>
+   <td style="text-align:right;"> 
+5
+</td>
+   <td style="text-align:right;"> 
+5
+</td>
+   <td style="text-align:right;"> 
+8
+</td>
+   <td style="text-align:right;"> 
+5.68
+</td>
+   <td style="text-align:right;"> 
+4.74
+</td>
+   <td style="text-align:right;"> 
+5.73
+</td>
+   <td style="text-align:right;"> 
+6.89
+</td>
+  </tr>
+</tbody>
+</table>
+
+
+
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">var(x)</td>
+<td align="right">11.0000000</td>
+<td align="right">11.0000000</td>
+<td align="right">11.0000000</td>
+<td align="right">11.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">mean(x)</td>
+<td align="right">9.0000000</td>
+<td align="right">9.0000000</td>
+<td align="right">9.0000000</td>
+<td align="right">9.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">var(y)</td>
+<td align="right">4.1272691</td>
+<td align="right">4.1276291</td>
+<td align="right">4.1226200</td>
+<td align="right">4.1232491</td>
+</tr>
+<tr class="even">
+<td align="left">mean(y)</td>
+<td align="right">7.5009091</td>
+<td align="right">7.5009091</td>
+<td align="right">7.5000000</td>
+<td align="right">7.5009091</td>
+</tr>
+<tr class="odd">
+<td align="left">cor(x,y)</td>
+<td align="right">0.8164205</td>
+<td align="right">0.8162365</td>
+<td align="right">0.8162867</td>
+<td align="right">0.8165214</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="figure/anscombefig-1.png" alt="Anscombe’s quartet" /><p class="caption">Anscombe’s quartet</p>
+</div>
+<p>The goal of visualisation is to <strong>explore</strong> the data to identify <strong>unexpected</strong> patterns. R is particularly well suited because if offers</p>
+<ul>
+<li><p>high-level plotting functions that produce useful figures with minimal efforts and enables</p></li>
+<li><p>flexibility and customisation to produce specialised/customized figures</p></li>
+</ul>
+<h1 id="base-plotting">Base plotting</h1>
+<p><strong>Painters model</strong>: Graphical elements are added to the canvas one layer at a time, and the picture builds up in levels. Lower levels are obscured by higher levels, allowing for blending, masking and overlaying of objects.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">10</span>)
+<span class="kw">rect</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)
+<span class="kw">rect</span>(<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">7</span>, <span class="dt">col =</span> <span class="st">&quot;white&quot;</span>)
+<span class="kw">abline</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" /><p class="caption">plot of chunk unnamed-chunk-1</p>
+</div>
+<h2 id="high-level-plotting-functions">High level plotting functions</h2>
+<p>High level plotting functions produce an appropriate chart based on the input.</p>
+<h3 id="scatter-plots">Scatter plots</h3>
+<p><code>plot</code> is the generic plotting function. By default produces scatter plots but other types can be set.</p>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">plot</span>(x, <span class="dt">y =</span> <span class="ot">NULL</span>, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>,  <span class="dt">xlim =</span> <span class="ot">NULL</span>, <span class="dt">ylim =</span> <span class="ot">NULL</span>,
+       <span class="dt">log =</span> <span class="st">&quot;&quot;</span>, <span class="dt">main =</span> <span class="ot">NULL</span>, <span class="dt">sub =</span> <span class="ot">NULL</span>, <span class="dt">xlab =</span> <span class="ot">NULL</span>, <span class="dt">ylab =</span> <span class="ot">NULL</span>,
+       <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">pch =</span> <span class="dv">1</span>, ...)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))
+<span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;p&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;points (default)&quot;</span>)
+<span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;lines&quot;</span>)
+<span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">10</span>:<span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;both (points and lines)&quot;</span>)
+<span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">type =</span> <span class="st">&quot;h&quot;</span>, <span class="dt">main =</span> <span class="st">&quot;histogram&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/plot-1.png" alt="Plot examples" /><p class="caption">Plot examples</p>
+</div>
+<p>Setting colours and point character</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span>:<span class="dv">10</span>, <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>),
+     <span class="dt">pch =</span> <span class="kw">c</span>(<span class="dv">15</span>, <span class="dv">19</span>), <span class="dt">cex =</span> <span class="dv">2</span>,
+     <span class="dt">main =</span> <span class="st">&quot;points (default)&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/pchcol-1.png" alt="Colours and plotting characters" /><p class="caption">Colours and plotting characters</p>
+</div>
 <blockquote>
-<h2>Challenge - Using conditions to change behaviour</h2>
-<ul>
-<li>Write a function, <code>plot_dist</code>, that plots a boxplot if the length of the vector is greater than a specified threshold and a stripchart otherwise. To do this you’ll use the R functions <code>boxplot</code> and <code>stripchart</code>.</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)
-<span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)     <span class="co"># day (column) 10</span></code></pre>
+<h2>Challenge</h2>
+<ol style="list-style-type: decimal">
+<li>Reproduce the figures above. Then customize the last figure so that even points are discribed with plus and odd points with an empty diamond. All plotting symbols should be of colour <code>&quot;steelblue&quot;</code>. See <code>?points</code> for details about plotting characters. Then, set the title of your plot using either <code>main</code> as argument to <code>plot</code> (as above) or with the <code>title</code> function.</li>
+<li>Load the <code>madata</code> data set from the <code>data/madata.rda</code> file. This data represents quantitative proteomics data. Inspect the data: how many rows and columns, what class is <code>madata</code>? Produce an MA-plot, i.e the log2 fold-change as a function of the average expression intensity using the <code>plot</code> function.</li>
+</ol>
+</blockquote>
+<h3 id="distributions">Distributions</h3>
+<pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">ncol =</span> <span class="dv">10</span>)
+<span class="kw">colnames</span>(m) &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span>:<span class="dv">10</span>]
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<span class="kw">hist</span>(m[, <span class="dv">1</span>], <span class="dt">main  =</span> <span class="st">&quot;histogram of A&quot;</span>)
+<span class="kw">boxplot</span>(m)</code></pre>
 <div class="figure">
-<img src="figure/using-conditions-01-1.png" alt="plot of chunk using-conditions-01" /><p class="caption">plot of chunk using-conditions-01</p>
+<img src="figure/distplots-1.png" alt="Distributions" /><p class="caption">Distributions</p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)  <span class="co"># samples (rows) 1-5 on day (column) 10</span></code></pre>
+<blockquote>
+<h2>Challenge</h2>
+<p>In the previous sections, you used produced figures describing the average, max and min inflammation over time. Use a <code>boxplot</code> to represent the distributions of time.</p>
+</blockquote>
+<h3 id="counts">Counts</h3>
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">10</span>)
+<span class="kw">names</span>(x) &lt;-<span class="st"> </span>LETTERS[<span class="dv">1</span>:<span class="dv">10</span>]
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))
+<span class="kw">barplot</span>(x)
+<span class="kw">abline</span>(<span class="dt">h =</span> <span class="dv">6</span>)
+<span class="kw">dotchart</span>(x)
+<span class="kw">abline</span>(<span class="dt">v =</span> <span class="dv">6</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</code></pre>
 <div class="figure">
-<img src="figure/using-conditions-01-2.png" alt="plot of chunk using-conditions-01" /><p class="caption">plot of chunk using-conditions-01</p>
+<img src="figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3" /><p class="caption">plot of chunk unnamed-chunk-3</p>
 </div>
-<ul>
-<li>One of your collaborators prefers to see the distributions of the larger vectors as a histogram instead of as a boxplot. In order to choose between a histogram and a boxplot we will edit the function <code>plot_dist</code> and add an additional argument <code>use_boxplot</code>. By defualt we will set <code>use_boxplot</code> to <code>TRUE</code> which will create a boxplot when the vector is longer than <code>threshold</code>. When <code>use_boxplot</code> is set to <code>FALSE</code>, <code>plot_dist</code> will instead plot a histogram for the larger vectors. As before, if the length of the vector is shorter than <code>threshold</code>, <code>plot_dist</code> will create a stripchart. A histogram is made with the <code>hist</code> command in R.</li>
-</ul>
-<pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">FALSE</span>)
-<span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>, <span class="dt">use_boxplot =</span> <span class="ot">TRUE</span>)   <span class="co"># day (column) 10 - create boxplot</span></code></pre>
+<blockquote>
+<h2>Tip</h2>
+<p>There is also a <code>pie</code> function to produce pie charts, which is however not recommended, as areas are much more difficult to compare that heights. Contrast the following bar and pie charts:</p>
 <div class="figure">
-<img src="figure/conditional-challenge-hist-1.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
-</div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>, <span class="dt">use_boxplot =</span> <span class="ot">FALSE</span>)  <span class="co"># day (column) 10 - create histogram</span></code></pre>
-<div class="figure">
-<img src="figure/conditional-challenge-hist-2.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
-</div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_dist</span>(dat[<span class="dv">1</span>:<span class="dv">5</span>, <span class="dv">10</span>], <span class="dt">threshold =</span> <span class="dv">10</span>)                    <span class="co"># samples (rows) 1-5 on day (column) 10</span></code></pre>
-<div class="figure">
-<img src="figure/conditional-challenge-hist-3.png" alt="plot of chunk conditional-challenge-hist" /><p class="caption">plot of chunk conditional-challenge-hist</p>
+<img src="figure/pievsbar-1.png" alt="plot of chunk pievsbar" /><p class="caption">plot of chunk pievsbar</p>
 </div>
 </blockquote>
-<h3 id="saving-automatically-generated-figures">Saving automatically generated figures</h3>
-<p>Now that we know how to have R make decisions based on input values, let’s update <code>analyze</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">analyze &lt;-<span class="st"> </span>function(filename, <span class="dt">output =</span> <span class="ot">NULL</span>) {
+<h3 id="heatmap">Heatmap</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">heatmap</span>(m)</code></pre>
+<div class="figure">
+<img src="figure/hmap-1.png" alt="Heatmap" /><p class="caption">Heatmap</p>
+</div>
+<blockquote>
+<h2>Challenge</h2>
+<p>Produce a heatmap of the <code>inflammation-01.csv</code> data. If you encounter an error, check the <code>heatmap</code> documentation (<code>?heatmap</code>) and verify what kind of variable the function supports. Compare it with the class the your inflammation data. There are various <code>as.*</code> functions that enable to convert one data type in another (when possible at all). In the r console, type <code>as.</code> followed by <code>TAB</code> to use autocompletion and identify a suitable conversion function.</p>
+</blockquote>
+<h2 id="low-level-interaction">Low level interaction</h2>
+<p>Low level interaction with the drawing device to build up a figure piece by piece.</p>
+<pre><code>    points, lines, rect, arrows, axis, abline, ...</code></pre>
+<blockquote>
+<h2>Tip</h2>
+<p>The <code>colours()</code> function returns a vector of <code>length(colours())</code> colour names. One can also use one of the pre-defined colour palettes: <code>rainbow(n)</code>, <code>heat.colors(n)</code>, <code>terrain.colours(n)</code>, <code>topo.colors(n)</code>, <code>cm.colors(n)</code>, where <code>n</code> defined the number of colours. The <code>RColorBrewer</code> package offers well characterised palettes; see for example</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;RColorBrewer&quot;</span>)
+<span class="kw">display.brewer.all</span>()</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-4-1.png" alt="RColorBrewer palettes" /><p class="caption">RColorBrewer palettes</p>
+</div>
+</blockquote>
+<h1 id="ggplot2"><code>ggplot2</code></h1>
+<p>We need to install and load the package first.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;ggplots&quot;</span>)</code></pre>
+<p>Based on the Grammar of Graphics</p>
+<ul>
+<li>A plot is made up of multiple layers</li>
+<li>A layer consists of data (must be a data.frame), a set of mappings between variables and aesthetics (aes), a geometric object (geom) and a statistical transformation</li>
+<li>Scales control the details of the mapping</li>
+<li>All components are independent and reusable</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/madata.rda&quot;</span>)
+<span class="kw">ggplot</span>(<span class="dt">data =</span> madata, <span class="kw">aes</span>(<span class="dt">x =</span> A, <span class="dt">y =</span> M, <span class="dt">colour =</span> class)) +
+<span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" /><p class="caption">plot of chunk unnamed-chunk-5</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/madata2.rda&quot;</span>)
+<span class="kw">head</span>(madata2)</code></pre>
+<pre><code>##           A            M data protein      class
+## 2  7.046010 -0.031266127 4vs2 ECA0625 Background
+## 5  7.090470 -0.020368859 4vs2 ECA0625 Background
+## 6  6.108037 -0.088470638 4vs2 ECA0625 Background
+## 8  6.764458  0.155656421 4vs2 ECA0625 Background
+## 10 7.275194  0.144162890 4vs2 ECA0625 Background
+## 11 7.011953 -0.005855139 4vs2 ECA0625 Background</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(madata2)</code></pre>
+<pre><code>##              A             M data protein      class
+## 23061 4.748683 -0.1696683555 6vs2 ECA2541 Background
+## 23091 5.576012  0.0004449593 6vs2 ECA4517 Background
+## 23141 5.524194 -0.1757914391 6vs2 ECA1777 Background
+## 23251 4.649809 -0.2185994857 6vs2 ECA0765 Background
+## 23351 5.916290  0.0531455603 6vs2 ECA1148 Background
+## 23481 5.537965 -0.0640589155 6vs2 ECA3291 Background</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> madata2, <span class="kw">aes</span>(<span class="dt">x =</span> A, <span class="dt">y =</span> M, <span class="dt">colour =</span> class)) +
+<span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>data)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6" /><p class="caption">plot of chunk unnamed-chunk-6</p>
+</div>
+<p>More details: <code>ggplot2</code> <a href="http://ggplot2.org/">web page</a> and <a href="http://www.amazon.com/dp/0387981403">book</a> (slightly outdated though, second edition on its way).</p>
+<h1 id="lattice"><code>lattice</code></h1>
+<p>The <code>lattice</code> package provides its own set of high-level plotting functions for <code>data.frames</code>, with an emphasis on multivariate data visualisation. It makes heavily use of the formula interface to produce effective data visualisations.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)
+<span class="kw">xyplot</span>(M ~<span class="st"> </span>A, <span class="dt">data =</span> madata, <span class="dt">col =</span> madata$class)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+</div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xyplot</span>(M ~<span class="st"> </span>A |<span class="st"> </span>data, <span class="dt">data =</span> madata2, <span class="dt">col =</span> madata$class)</code></pre>
+<div class="figure">
+<img src="figure/unnamed-chunk-7-2.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+</div>
+<p>More details: <a href="http://lmdvr.r-forge.r-project.org/figures/figures.html">Lattice: Multivariate Data Visualization with R</a> book.</p>
+<h2 id="overview-table">Overview table</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">plot type</th>
+<th align="left">traditional</th>
+<th align="left">lattice</th>
+<th align="left">ggplot2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">scatterplots</td>
+<td align="left">plot</td>
+<td align="left">xyplot</td>
+<td align="left">geom_point</td>
+</tr>
+<tr class="even">
+<td align="left">histograms</td>
+<td align="left">hist</td>
+<td align="left">histgram</td>
+<td align="left">geom_histogram</td>
+</tr>
+<tr class="odd">
+<td align="left">density plots</td>
+<td align="left">plot(density())</td>
+<td align="left">densityplot</td>
+<td align="left">geom_density</td>
+</tr>
+<tr class="even">
+<td align="left">boxplots</td>
+<td align="left">boxplot</td>
+<td align="left">bwplot</td>
+<td align="left">geom_boxplot</td>
+</tr>
+<tr class="odd">
+<td align="left">violin plots</td>
+<td align="left">vioplot::vioplot</td>
+<td align="left">bwplot(…, panel = panel.violin)</td>
+<td align="left">geom_violin</td>
+</tr>
+<tr class="even">
+<td align="left">line plots</td>
+<td align="left">plot, matplot</td>
+<td align="left">xyploy, parallelplot</td>
+<td align="left">geom_line</td>
+</tr>
+<tr class="odd">
+<td align="left">bar plots</td>
+<td align="left">barplot</td>
+<td align="left">barchart</td>
+<td align="left">geom_bar</td>
+</tr>
+<tr class="even">
+<td align="left">pie charts</td>
+<td align="left">pie</td>
+<td align="left"></td>
+<td align="left">geom_bar with polar coordinates</td>
+</tr>
+<tr class="odd">
+<td align="left">dot plots</td>
+<td align="left">dotchart</td>
+<td align="left">dotplot</td>
+<td align="left">geom_point</td>
+</tr>
+<tr class="even">
+<td align="left">stip plots</td>
+<td align="left">stripchart</td>
+<td align="left">stripplot</td>
+<td align="left">goem_point</td>
+</tr>
+<tr class="odd">
+<td align="left">dendrogramms</td>
+<td align="left">plot(hclust())</td>
+<td align="left">latticeExtra package</td>
+<td align="left">ggdendro package</td>
+</tr>
+<tr class="even">
+<td align="left">heatmaps</td>
+<td align="left">image, heatmap</td>
+<td align="left">levelplot</td>
+<td align="left">geom_tile</td>
+</tr>
+</tbody>
+</table>
+<h1 id="saving-plots-to-a-file">Saving plots to a file</h1>
+<p>In previous sections, we have built a function <code>analyze</code> to plot summary statistics of the inflammation data:</p>
+<pre class="sourceCode r"><code class="sourceCode r">analyze &lt;-<span class="st"> </span>function(filename) {
   <span class="co"># Plots the average, min, and max inflammation over time.</span>
-  <span class="co"># Input:</span>
-  <span class="co">#    filename: character string of a csv file</span>
-  <span class="co">#    output: character string of pdf file for saving</span>
-  if (!<span class="kw">is.null</span>(output)) {
-    <span class="kw">pdf</span>(output)
-  }
+  <span class="co"># Input is character string of a csv file.</span>
   dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> filename, <span class="dt">header =</span> <span class="ot">FALSE</span>)
   avg_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, mean)
   <span class="kw">plot</span>(avg_day_inflammation)
-  max_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, max)
-  <span class="kw">plot</span>(max_day_inflammation)
-  min_day_inflammation &lt;-<span class="st"> </span><span class="kw">apply</span>(dat, <span class="dv">2</span>, min)
-  <span class="kw">plot</span>(min_day_inflammation)
-  if (!<span class="kw">is.null</span>(output)) {
-    <span class="kw">dev.off</span>()
-  }
 }</code></pre>
-<p>We added an argument, <code>output</code>, that by default is set to <code>NULL</code>. An <code>if</code> statement at the beginning checks the argument <code>output</code> to decide whether or not to save the plots to a pdf. Let’s break it down. The function <code>is.null</code> returns <code>TRUE</code> if a variable is <code>NULL</code> and <code>FALSE</code> otherwise. The exclamation mark, <code>!</code>, stands for “not”. Therefore the line in the <code>if</code> block is only executed if <code>output</code> is “not null”.</p>
-<pre class="sourceCode r"><code class="sourceCode r">output &lt;-<span class="st"> </span><span class="ot">NULL</span>
-<span class="kw">is.null</span>(output)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">!<span class="kw">is.null</span>(output)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<p>Now we can use <code>analyze</code> both interactively:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>)</code></pre>
-<p><img src="figure/inflammation-01-1.png" alt="plot of chunk inflammation-01" /> <img src="figure/inflammation-01-2.png" alt="plot of chunk inflammation-01" /> <img src="figure/inflammation-01-3.png" alt="plot of chunk inflammation-01" /></p>
-<p>and to save plots:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>, <span class="dt">output =</span> <span class="st">&quot;inflammation-01.pdf&quot;</span>)</code></pre>
-<p>This now works well when we want to process one data file at a time, but how can we specify the output file in <code>analyze_all</code>? We need to substitute the filename ending “csv” with “pdf”, which we can do using the function <code>sub</code>:</p>
-<pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> &quot;data/inflammation-01.csv&quot;</span>
-<span class="kw">sub</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;pdf&quot;</span>, f)</code></pre>
-<pre><code>## [1] &quot;data/inflammation-01.pdf&quot;</code></pre>
-<p>Now let’s update <code>analyze_all</code>:</p>
+<p>And also built the function <code>analyze_all</code> to automate the processing of each data file:</p>
 <pre class="sourceCode r"><code class="sourceCode r">analyze_all &lt;-<span class="st"> </span>function(pattern) {
   <span class="co"># Runs the function analyze for each file in the current working directory</span>
   <span class="co"># that contains the given pattern.</span>
-  filenames &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">path =</span> <span class="st">&quot;data&quot;</span>, <span class="dt">pattern =</span> pattern, <span class="dt">full.names =</span> <span class="ot">TRUE</span>)
+  filenames &lt;-<span class="st"> </span><span class="kw">list.files</span>(<span class="dt">pattern =</span> pattern)
   for (f in filenames) {
-    pdf_name &lt;-<span class="st"> </span><span class="kw">sub</span>(<span class="st">&quot;csv&quot;</span>, <span class="st">&quot;pdf&quot;</span>, f)
-    <span class="kw">analyze</span>(f, <span class="dt">output =</span> pdf_name)
+    <span class="kw">analyze</span>(f)
   }
 }</code></pre>
-<p>Now we can save all of the results with just one line of code:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">analyze_all</span>(<span class="st">&quot;inflammation&quot;</span>)</code></pre>
-<p>Now if we need to make any changes to our analysis, we can edit the <code>analyze</code> function and quickly regenerate all the figures with <code>analzye_all</code>.</p>
+<p>While these are useful in an interactive R session, what if we want to send our results to our collaborators? Since we currently have 12 data sets, running <code>analyze_all</code> creates 36 plots. Saving each of these individually would be tedious and error-prone. And in the likely situation that we want to change how the data is processed or the look of the plots, we would have to once again save all 36 before sharing the updated results with our collaborators.</p>
+<p>Here’s how we can save all three plots of the first inflamation data set in a pdf file:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">pdf</span>(<span class="st">&quot;inflammation-01.pdf&quot;</span>)
+<span class="kw">analyze</span>(<span class="st">&quot;data/inflammation-01.csv&quot;</span>)
+<span class="kw">dev.off</span>()</code></pre>
+<p>The function <code>pdf</code> redirects all the plots generated by R into a pdf file, which in this case we have named “inflammation-01.pdf”. After we are done generating the plots to be saved in the pdf file, we stop R from redirecting plots with the function <code>dev.off</code>.</p>
 <blockquote>
-<h2>Challenge - Changing the behaviour of the plot command</h2>
-<ul>
-<li>One of your collaborators asks if you can recreate the figures with lines instead of points. Find the relevant argument to <code>plot</code> by reading the documentation (<code>?plot</code>), update <code>analyze</code>, and then recreate all the figures with <code>analyze_all</code>.</li>
-</ul>
+<h2>Tip</h2>
+<p>If you run <code>pdf</code> multiple times without running <code>dev.off</code>, you will save plots to the most recently opened file. However, you won’t won’t be able to open the previous pdf files because the connections were not closed. In order to get out of this situation, you’ll need to run <code>dev.off</code> until all the pdf connections are closed. You can check your current status using the function <code>dev.cur</code>. If it says “pdf”, all your plots are being saved in the last pdf specified. If it says “null device” or “RStudioGD”, the plots will be visualized normally.</p>
 </blockquote>
+<p>We can update the <code>analyze</code> function so that it always saves the plots in a pdf. But that would make it more difficult to interactively test out new changes. It would be ideal if <code>analyze</code> would either save or not save the plots based on its input.</p>
+<p>There are similar devive functions for other formats: <code>png()</code> to save a plot to a png file, <code>postscript()</code> for a ps file, <code>jpeg()</code> for a jpg file, …</p>
+<!-- > ## Challenge - Using conditions to change behaviour {.challenge} -->
+<!-- > -->
+<!-- >  + Write a function, `plot_dist`, that plots a boxplot if the length of the vector is greater than a specified threshold and a stripchart otherwise. -->
+<!-- >  To do this you'll use the R functions `boxplot` and `stripchart`. -->
+<!-- > -->
+<!-- >```{r using-conditions-01, echo=-1} -->
+<!-- > plot_dist <- function(x, threshold) { -->
+<!-- >    if (length(x) > threshold) { -->
+<!-- >        boxplot(x) -->
+<!-- >    } else { -->
+<!-- >        stripchart(x) -->
+<!-- >    } -->
+<!-- > } -->
+<!-- > dat <- read.csv("data/inflammation-01.csv", header = FALSE) -->
+<!-- > plot_dist(dat[, 10], threshold = 10)     # day (column) 10 -->
+<!-- > plot_dist(dat[1:5, 10], threshold = 10)  # samples (rows) 1-5 on day (column) 10 -->
+<!-- > ``` -->
+<!-- > -->
+<!-- >  + One of your collaborators prefers to see the distributions of the larger vectors as a histogram instead of as a boxplot.  In order to choose between a histogram and a boxplot we will edit the function `plot_dist` and add an additional argument `use_boxplot`.  By defualt we will set `use_boxplot` to `TRUE` which will create a boxplot when the vector is longer than `threshold`.  When `use_boxplot` is set to `FALSE`, `plot_dist` will instead plot a histogram for the larger vectors.  As before, if the length of the vector is shorter than `threshold`, `plot_dist` will create a stripchart.  A histogram is made with the `hist` command in R. -->
+<!-- > -->
+<!-- > ```{r conditional-challenge-hist, echo=-1} -->
+<!-- > plot_dist <- function(x, threshold, use_boxplot = TRUE) { -->
+<!-- >    if (length(x) > threshold & use_boxplot) { -->
+<!-- >        boxplot(x) -->
+<!-- >    } else if (length(x) > threshold & !use_boxplot) { -->
+<!-- >        hist(x) -->
+<!-- >    } else { -->
+<!-- >        stripchart(x) -->
+<!-- >    } -->
+<!-- > } -->
+<!-- > dat <- read.csv("data/inflammation-01.csv", header = FALSE) -->
+<!-- > plot_dist(dat[, 10], threshold = 10, use_boxplot = TRUE)   # day (column) 10 - create boxplot -->
+<!-- > plot_dist(dat[, 10], threshold = 10, use_boxplot = FALSE)  # day (column) 10 - create histogram -->
+<!-- > plot_dist(dat[1:5, 10], threshold = 10)                    # samples (rows) 1-5 on day (column) 10 -->
+<!-- > ``` -->
+
+<!-- ### Saving automatically generated figures -->
+
+<!-- Now that we know how to have R make decisions based on input values, let's update `analyze`: -->
+
+<!-- ```{r analyze-save} -->
+<!-- analyze <- function(filename, output = NULL) { -->
+<!--   # Plots the average, min, and max inflammation over time. -->
+<!--   # Input: -->
+<!--   #    filename: character string of a csv file -->
+<!--   #    output: character string of pdf file for saving -->
+<!--   if (!is.null(output)) { -->
+<!--     pdf(output) -->
+<!--   } -->
+<!--   dat <- read.csv(file = filename, header = FALSE) -->
+<!--   avg_day_inflammation <- apply(dat, 2, mean) -->
+<!--   plot(avg_day_inflammation) -->
+<!--   max_day_inflammation <- apply(dat, 2, max) -->
+<!--   plot(max_day_inflammation) -->
+<!--   min_day_inflammation <- apply(dat, 2, min) -->
+<!--   plot(min_day_inflammation) -->
+<!--   if (!is.null(output)) { -->
+<!--     dev.off() -->
+<!--   } -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- We added an argument, `output`, that by default is set to `NULL`. -->
+<!-- An `if` statement at the beginning checks the argument `output` to decide whether or not to save the plots to a pdf. -->
+<!-- Let's break it down. -->
+<!-- The function `is.null` returns `TRUE` if a variable is `NULL` and `FALSE` otherwise. -->
+<!-- The exclamation mark, `!`, stands for "not". -->
+<!-- Therefore the line in the `if` block is only executed if `output` is "not null". -->
+
+<!-- ```{r} -->
+<!-- output <- NULL -->
+<!-- is.null(output) -->
+<!-- !is.null(output) -->
+<!-- ``` -->
+
+<!-- Now we can use `analyze` both interactively: -->
+
+<!-- ```{r inflammation-01} -->
+<!-- analyze("data/inflammation-01.csv") -->
+<!-- ``` -->
+
+<!-- and to save plots: -->
+
+<!-- ```{r results='hide'} -->
+<!-- analyze("data/inflammation-01.csv", output = "inflammation-01.pdf") -->
+<!-- ``` -->
+
+<!-- This now works well when we want to process one data file at a time, but how can we specify the output file in `analyze_all`? -->
+<!-- We need to substitute the filename ending "csv" with "pdf", which we can do using the function `sub`: -->
+
+<!-- ```{r} -->
+<!-- f <- "data/inflammation-01.csv" -->
+<!-- sub("csv", "pdf", f) -->
+<!-- ``` -->
+
+<!-- Now let's update `analyze_all`: -->
+
+<!-- ```{r analyze_all-save} -->
+<!-- analyze_all <- function(pattern) { -->
+<!--   # Runs the function analyze for each file in the current working directory -->
+<!--   # that contains the given pattern. -->
+<!--   filenames <- list.files(path = "data", pattern = pattern, full.names = TRUE) -->
+<!--   for (f in filenames) { -->
+<!--     pdf_name <- sub("csv", "pdf", f) -->
+<!--     analyze(f, output = pdf_name) -->
+<!--   } -->
+<!-- } -->
+<!-- ``` -->
+
+<!-- Now we can save all of the results with just one line of code: -->
+
+<!-- ```{r} -->
+<!-- analyze_all("inflammation") -->
+<!-- ``` -->
+
+<!-- Now if we need to make any changes to our analysis, we can edit the `analyze` function and quickly regenerate all the figures with `analzye_all`. -->
+
+<!-- > ## Challenge - Changing the behaviour of the plot command {.challenge} -->
+<!-- > -->
+<!-- >  + One of your collaborators asks if you can recreate the figures with lines instead of points. -->
+<!-- >  Find the relevant argument to `plot` by reading the documentation (`?plot`), update `analyze`, and then recreate all the figures with `analyze_all`. -->
+
+<!-- ```{r analyze-save-line, echo=FALSE} -->
+<!-- analyze <- function(filename, output = NULL) { -->
+<!--   # Plots the average, min, and max inflammation over time. -->
+<!--   # Input: -->
+<!--   #    filename: character string of a csv file -->
+<!--   #    output: character string of pdf file for saving -->
+<!--   if (!is.null(output)) { -->
+<!--     pdf(output) -->
+<!--   } -->
+<!--   dat <- read.csv(file = filename, header = FALSE) -->
+<!--   avg_day_inflammation <- apply(dat, 2, mean) -->
+<!--   plot(avg_day_inflammation, type = "l") -->
+<!--   max_day_inflammation <- apply(dat, 2, max) -->
+<!--   plot(max_day_inflammation, type = "l") -->
+<!--   min_day_inflammation <- apply(dat, 2, min) -->
+<!--   plot(min_day_inflammation, type = "l") -->
+<!--   if (!is.null(output)) { -->
+<!--     dev.off() -->
+<!--   } -->
+<!-- } -->
+<!-- ``` -->
+
 <div class="keypoints" markdown="1">
-<h4 id="key-points">Key Points</h4>
+
+<h2 id="interactive-graphics">Interactive graphics</h2>
+<p>Not covered here: <code>shiny</code> (<a href="https://lgatto.shinyapps.io/shinyMA/">example</a>), <code>htmlwidgets</code>, <code>rCharts</code>, <code>googleVis</code>.</p>
+<h2 id="resources">Resources</h2>
 <ul>
-<li>Save a plot in a pdf file using <code>pdf(&quot;name.pdf&quot;)</code> and stop writing to the pdf file with <code>dev.off()</code>.</li>
+<li><a href="http://www.amazon.com/dp/1449316956">R Graphics Cookbook</a></li>
+<li><a href="https://www.stat.auckland.ac.nz/%7Epaul/RG2e/">R Graphics</a> book</li>
+<li><a href="http://rgm3.lab.nig.ac.jp/RGM/R_image_list?page=1133&amp;init=true">R Graphical Manual</a></li>
 </ul>
         </div>
       </div>

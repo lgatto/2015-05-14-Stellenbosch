@@ -203,7 +203,7 @@ system.time(avg2 <- analyze2(filenames))
 
 ~~~{.output}
    user  system elapsed 
-  0.038   0.001   0.038 
+  0.039   0.001   0.040 
 
 ~~~
 
@@ -232,7 +232,7 @@ system.time(avg3 <- analyze3(filenames))
 
 ~~~{.output}
    user  system elapsed 
-  0.039   0.001   0.040 
+  0.038   0.000   0.039 
 
 ~~~
 
