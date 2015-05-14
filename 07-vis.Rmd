@@ -182,6 +182,32 @@ heatmap(m)
 > possible at all). In the r console, type `as.` followed by `TAB` to
 > use autocompletion and identify a suitable conversion function.
 
+### These functions are methods
+
+These high-level functions have customised behaviour that depends on their inputs:
+
+* A `boxplot` of a `vector`, `a matrix` or a `list`:
+
+```{r bxmeth, fig.cap = "Boxplot methods", fig.width = 12, fig.height = 5}
+par(mfrow = c(1, 3))
+boxplot(rnorm(100), main = "vector")
+m <- matrix(rnorm(1000), ncol = 10)
+boxplot(m, main = "matrix")
+ll <- list(A = rnorm(100), B = rnorm(100, 1))
+boxplot(ll, main = "list")
+```
+
+* A `plot` of 1 of 2 `vector`s of a `data.frame`:
+
+```{r pltmeth, fig.cap = "Plot methods", fig.width = 12, fig.height = 5}
+par(mfrow = c(1, 3))
+x <- rnorm(100)
+plot(x, main = "vector")
+y <- rnorm(100)
+plot(x, y, main = "2 vectors")
+dfr <- data.frame(x, y)
+plot(dfr, main = "data.frame")
+```
 
 ## Low level interaction
 
@@ -223,13 +249,13 @@ Based on the Grammar of Graphics
 *  Scales control the details of the mapping
 *  All components are independent and reusable
 
-```{r}
+```{r ggplot2fig, fig.cap = "MA plot with `ggplot2`"}
 load("./data/madata.rda")
 ggplot(data = madata, aes(x = A, y = M, colour = class)) +
     geom_point()
 ```
 
-```{r}
+```{r ggplot2facet, fig.cap = "Facets"}
 load("./data/madata2.rda")
 head(madata2)
 tail(madata2)
@@ -248,7 +274,7 @@ functions for `data.frames`, with an emphasis on multivariate data
 visualisation. It makes heavily use of the formula interface to
 produce effective data visualisations.
 
-```{r}
+```{r, fig.cap = "MAplot with `lattice`"}
 library("lattice")
 xyplot(M ~ A, data = madata, col = madata$class)
 xyplot(M ~ A | data, data = madata2, col = madata$class)

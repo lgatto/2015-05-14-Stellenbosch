@@ -301,6 +301,38 @@ heatmap(m)
 > possible at all). In the r console, type `as.` followed by `TAB` to
 > use autocompletion and identify a suitable conversion function.
 
+### These functions are methods
+
+These high-level functions have customised behaviour that depends on their inputs:
+
+* A `boxplot` of a `vector`, `a matrix` or a `list`:
+
+
+```r
+par(mfrow = c(1, 3))
+boxplot(rnorm(100), main = "vector")
+m <- matrix(rnorm(1000), ncol = 10)
+boxplot(m, main = "matrix")
+ll <- list(A = rnorm(100), B = rnorm(100, 1))
+boxplot(ll, main = "list")
+```
+
+![Boxplot methods](figure/bxmeth-1.png) 
+
+* A `plot` of 1 of 2 `vector`s of a `data.frame`:
+
+
+```r
+par(mfrow = c(1, 3))
+x <- rnorm(100)
+plot(x, main = "vector")
+y <- rnorm(100)
+plot(x, y, main = "2 vectors")
+dfr <- data.frame(x, y)
+plot(dfr, main = "data.frame")
+```
+
+![Plot methods](figure/pltmeth-1.png) 
 
 ## Low level interaction
 
@@ -353,7 +385,7 @@ ggplot(data = madata, aes(x = A, y = M, colour = class)) +
     geom_point()
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![MA plot with `ggplot2`](figure/ggplot2fig-1.png) 
 
 
 ```r
@@ -390,7 +422,7 @@ ggplot(data = madata2, aes(x = A, y = M, colour = class)) +
     geom_point() + facet_grid(. ~ data)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![Facets](figure/ggplot2facet-1.png) 
 
 More details: `ggplot2` [web page](http://ggplot2.org/) and
 [book](http://www.amazon.com/dp/0387981403) (slightly outdated
@@ -409,13 +441,13 @@ library("lattice")
 xyplot(M ~ A, data = madata, col = madata$class)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![MAplot with `lattice`](figure/unnamed-chunk-5-1.png) 
 
 ```r
 xyplot(M ~ A | data, data = madata2, col = madata$class)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
+![MAplot with `lattice`](figure/unnamed-chunk-5-2.png) 
 
 More details:
 [Lattice: Multivariate Data Visualization with R](http://lmdvr.r-forge.r-project.org/figures/figures.html)

@@ -494,6 +494,33 @@ y4
 <h2>Challenge</h2>
 <p>Produce a heatmap of the <code>inflammation-01.csv</code> data. If you encounter an error, check the <code>heatmap</code> documentation (<code>?heatmap</code>) and verify what kind of variable the function supports. Compare it with the class the your inflammation data. There are various <code>as.*</code> functions that enable to convert one data type in another (when possible at all). In the r console, type <code>as.</code> followed by <code>TAB</code> to use autocompletion and identify a suitable conversion function.</p>
 </blockquote>
+<h3 id="these-functions-are-methods">These functions are methods</h3>
+<p>These high-level functions have customised behaviour that depends on their inputs:</p>
+<ul>
+<li>A <code>boxplot</code> of a <code>vector</code>, <code>a matrix</code> or a <code>list</code>:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+<span class="kw">boxplot</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">main =</span> <span class="st">&quot;vector&quot;</span>)
+m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">1000</span>), <span class="dt">ncol =</span> <span class="dv">10</span>)
+<span class="kw">boxplot</span>(m, <span class="dt">main =</span> <span class="st">&quot;matrix&quot;</span>)
+ll &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">A =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">B =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">1</span>))
+<span class="kw">boxplot</span>(ll, <span class="dt">main =</span> <span class="st">&quot;list&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/bxmeth-1.png" alt="Boxplot methods" /><p class="caption">Boxplot methods</p>
+</div>
+<ul>
+<li>A <code>plot</code> of 1 of 2 <code>vector</code>s of a <code>data.frame</code>:</li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))
+x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
+<span class="kw">plot</span>(x, <span class="dt">main =</span> <span class="st">&quot;vector&quot;</span>)
+y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)
+<span class="kw">plot</span>(x, y, <span class="dt">main =</span> <span class="st">&quot;2 vectors&quot;</span>)
+dfr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x, y)
+<span class="kw">plot</span>(dfr, <span class="dt">main =</span> <span class="st">&quot;data.frame&quot;</span>)</code></pre>
+<div class="figure">
+<img src="figure/pltmeth-1.png" alt="Plot methods" /><p class="caption">Plot methods</p>
+</div>
 <h2 id="low-level-interaction">Low level interaction</h2>
 <p>Low level interaction with the drawing device to build up a figure piece by piece.</p>
 <pre><code>    points, lines, rect, arrows, axis, abline, ...</code></pre>
@@ -521,7 +548,7 @@ y4
 <span class="kw">ggplot</span>(<span class="dt">data =</span> madata, <span class="kw">aes</span>(<span class="dt">x =</span> A, <span class="dt">y =</span> M, <span class="dt">colour =</span> class)) +
 <span class="st">    </span><span class="kw">geom_point</span>()</code></pre>
 <div class="figure">
-<img src="figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5" /><p class="caption">plot of chunk unnamed-chunk-5</p>
+<img src="figure/ggplot2fig-1.png" alt="MA plot with ggplot2" /><p class="caption">MA plot with <code>ggplot2</code></p>
 </div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/madata2.rda&quot;</span>)
 <span class="kw">head</span>(madata2)</code></pre>
@@ -543,7 +570,7 @@ y4
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> madata2, <span class="kw">aes</span>(<span class="dt">x =</span> A, <span class="dt">y =</span> M, <span class="dt">colour =</span> class)) +
 <span class="st">    </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>data)</code></pre>
 <div class="figure">
-<img src="figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6" /><p class="caption">plot of chunk unnamed-chunk-6</p>
+<img src="figure/ggplot2facet-1.png" alt="Facets" /><p class="caption">Facets</p>
 </div>
 <p>More details: <code>ggplot2</code> <a href="http://ggplot2.org/">web page</a> and <a href="http://www.amazon.com/dp/0387981403">book</a> (slightly outdated though, second edition on its way).</p>
 <h1 id="lattice"><code>lattice</code></h1>
@@ -551,11 +578,11 @@ y4
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;lattice&quot;</span>)
 <span class="kw">xyplot</span>(M ~<span class="st"> </span>A, <span class="dt">data =</span> madata, <span class="dt">col =</span> madata$class)</code></pre>
 <div class="figure">
-<img src="figure/unnamed-chunk-7-1.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+<img src="figure/unnamed-chunk-5-1.png" alt="MAplot with lattice" /><p class="caption">MAplot with <code>lattice</code></p>
 </div>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">xyplot</span>(M ~<span class="st"> </span>A |<span class="st"> </span>data, <span class="dt">data =</span> madata2, <span class="dt">col =</span> madata$class)</code></pre>
 <div class="figure">
-<img src="figure/unnamed-chunk-7-2.png" alt="plot of chunk unnamed-chunk-7" /><p class="caption">plot of chunk unnamed-chunk-7</p>
+<img src="figure/unnamed-chunk-5-2.png" alt="MAplot with lattice" /><p class="caption">MAplot with <code>lattice</code></p>
 </div>
 <p>More details: <a href="http://lmdvr.r-forge.r-project.org/figures/figures.html">Lattice: Multivariate Data Visualization with R</a> book.</p>
 <h2 id="overview-table">Overview table</h2>
