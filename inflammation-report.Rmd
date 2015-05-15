@@ -1,0 +1,45 @@
+---
+title: "Inflammation report"
+author: "Laurent"
+date: "15/05/2015"
+output: html_document
+---
+
+# Introduction
+
+```{r, echo=FALSE}
+f <- "./data/inflammation-01.csv"
+```
+
+In this report, we will describe inflammation data described in file
+`r f`. We will not display the code to make it as readable as possible
+for our collaborators that have never seen any code.
+
+# The data
+
+```{r, echo=FALSE}
+dat <- read.csv(f, header = FALSE)
+mx <- max(dat)
+nmx <- sum(dat == mx)
+mn <- min(dat)
+nmn <- sum(dat == mn)
+```
+
+The data contains measurements over `r ncol(dat)` days for `r nrow(dat)` patients. 
+The measurements range from `r mn` (`r nmx` times) to `r mx` (`r nmn` times).
+
+# Visualisation
+
+```{r, echo=FALSE}
+boxplot(dat, main = f)
+heatmap(as.matrix(dat))
+```
+
+# Session info
+
+Below, we provide the R and package versions used to generate this report:
+
+```{r, echo=FALSE}
+sessionInfo()
+```
+
