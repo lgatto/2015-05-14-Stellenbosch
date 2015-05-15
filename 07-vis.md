@@ -257,7 +257,7 @@ boxplot(m)
 >
 > In the previous sections, you used produced figures describing the
 > average, max and min inflammation over time. Use a `boxplot` to
-> represent the distributions of time.
+> represent the distributions over time.
 
 ### Counts
 
